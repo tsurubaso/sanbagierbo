@@ -148,6 +148,23 @@ export default function Welcome() {
           <li>3D artists</li>
         </ul>
         <p className="text-lg mb-6">... it&apos;s open bar!</p>
+        <div className="relative w-full h-[500px]">
+          {/* Image en arrière-plan */}
+          <Image
+            src="/image.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+          />
+
+          {/* Texte par-dessus */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+              Mon texte par-dessus l’image
+            </h1>
+          </div>
+        </div>
 
         <div ref={ref} className="space-y-64 p-8 min-h-[200vh]">
           <motion.div
@@ -173,7 +190,16 @@ export default function Welcome() {
           </motion.div>
         </div>
 
-                <div className="space-y-32 p-8">
+        <div
+      className="relative w-full h-[500px] bg-cover bg-center flex items-center justify-center"
+      style={{ backgroundImage: "url('/image2.jpg')" }}
+    >
+      <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+        Mon texte par-dessus l’image
+      </h1>
+    </div>
+
+        <div className="space-y-32 p-8">
           {/* Élément qui rentre de la gauche */}
           <motion.div
             initial={{ x: -200, opacity: 0 }}
@@ -200,57 +226,56 @@ export default function Welcome() {
         </div>
 
         <div className="space-y-32 p-8">
-  {/* Élément qui rentre de la gauche */}
-  <motion.div
-    initial={{ x: -200, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    transition={{ duration: 2 }}   // ⏱️ plus lent
-    viewport={{ once: true }}
-    className="bg-blue-200 p-6 rounded-lg shadow-lg"
-  >
-    <h2 className="text-2xl font-bold">Section de gauche</h2>
-    <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
-  </motion.div>
+          {/* Élément qui rentre de la gauche */}
+          <motion.div
+            initial={{ x: -200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 2 }} // ⏱️ plus lent
+            viewport={{ once: true }}
+            className="bg-blue-200 p-6 rounded-lg shadow-lg"
+          >
+            <h2 className="text-2xl font-bold">Section de gauche</h2>
+            <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
+          </motion.div>
 
-  {/* Élément qui rentre de la droite */}
-  <motion.div
-    initial={{ x: 200, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    transition={{ duration: 2 }}   // ⏱️ plus lent
-    viewport={{ once: true }}
-    className="bg-green-200 p-6 rounded-lg shadow-lg"
-  >
-    <h2 className="text-2xl font-bold">Section de droite</h2>
-    <p>Ce bloc arrive depuis la droite quand on scroll.</p>
-  </motion.div>
-</div>
+          {/* Élément qui rentre de la droite */}
+          <motion.div
+            initial={{ x: 200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 2 }} // ⏱️ plus lent
+            viewport={{ once: true }}
+            className="bg-green-200 p-6 rounded-lg shadow-lg"
+          >
+            <h2 className="text-2xl font-bold">Section de droite</h2>
+            <p>Ce bloc arrive depuis la droite quand on scroll.</p>
+          </motion.div>
+        </div>
 
-<div className="space-y-32 p-8">
-  {/* Élément qui rentre de la gauche */}
-  <motion.div
-    initial={{ x: -200, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    transition={{ duration: 4 }}   // ⏱️ plus lent
-    viewport={{ once: true }}
-    className="bg-blue-200 p-6 rounded-lg shadow-lg"
-  >
-    <h2 className="text-2xl font-bold">Section de gauche</h2>
-    <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
-  </motion.div>
+        <div className="space-y-32 p-8">
+          {/* Élément qui rentre de la gauche */}
+          <motion.div
+            initial={{ x: -200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 4 }} // ⏱️ plus lent
+            viewport={{ once: true }}
+            className="bg-blue-200 p-6 rounded-lg shadow-lg"
+          >
+            <h2 className="text-2xl font-bold">Section de gauche</h2>
+            <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
+          </motion.div>
 
-  {/* Élément qui rentre de la droite */}
-  <motion.div
-    initial={{ x: 200, opacity: 0 }}
-    whileInView={{ x: 0, opacity: 1 }}
-    transition={{ duration: 4, ease: "easeOut" }}
-    viewport={{ once: true }}
-    className="bg-green-200 p-6 rounded-lg shadow-lg"
-  >
-    <h2 className="text-2xl font-bold">Section de droite</h2>
-    <p>Ce bloc arrive depuis la droite quand on scroll.</p>
-  </motion.div>
-</div>
-
+          {/* Élément qui rentre de la droite */}
+          <motion.div
+            initial={{ x: 200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 4, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="bg-green-200 p-6 rounded-lg shadow-lg"
+          >
+            <h2 className="text-2xl font-bold">Section de droite</h2>
+            <p>Ce bloc arrive depuis la droite quand on scroll.</p>
+          </motion.div>
+        </div>
 
         <hr className="my-8 border-gray-500" />
 
