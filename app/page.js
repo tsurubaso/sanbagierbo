@@ -1,41 +1,85 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-//import { useRef } from "react";
+import { useRef } from "react";
 
 export default function Welcome() {
-  /*
   const ref = useRef(null);
 
-  // on observe la progression du scroll par rapport à la div ref
+  // track scroll inside the section
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
+    // start when section enters viewport, end when leaves
   });
 
-  // élément qui part de la gauche et se centre
-  const xLeft = useTransform(scrollYProgress, [0, 1], ["-100%", "0%"]);
-  // élément qui part de la droite et se centre
-  const xRight = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
-*/
+  // map scroll progress (0 → 1) to horizontal shift (-50px → +50px)
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    ["-50px", "0px", "50px"]
+  );
 
-  function SlideIn({ from = "left", duration = 1, children }) {
+  const colorRef = useRef(null);
+
+  const { scrollYProgress: colorProgress } = useScroll({
+    target: colorRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bgColor = useTransform(colorProgress, [0, 1], ["#1e3a8a", "#facc15"]);
+
+  // ---------- COMPONENTS ----------
+  function HeroSection({
+    image,
+    text,
+    duration = 1.5,
+    direction = "left",
+    hover = false,
+  }) {
+    const initialX = direction === "left" ? -200 : 200;
+
+    return (
+      <motion.div
+        className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
+        initial={{ x: initialX, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration, ease: "easeOut" }}
+        whileHover={hover ? { scale: 1.05 } : {}}
+      >
+        {/* Background */}
+        <Image src={image} alt={text} fill className="object-cover" priority />
+
+        {/* Text overlay */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          whileHover={hover ? { y: -10 } : {}}
+          transition={{ duration: 0.3 }}
+        >
+          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+            {text}
+          </h1>
+        </motion.div>
+      </motion.div>
+    );
+  }
+
+  function SlideIn({ from = "left", duration = 1, children, className }) {
     const initialX = from === "left" ? -200 : 200;
     return (
       <motion.div
+        viewport={{ amount: 0.3, once: false }}
         initial={{ x: initialX, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration }}
-        viewport={{ once: true }}
-        className="p-6 rounded-lg shadow-lg bg-blue-200"
+        className={`p-6 rounded-lg shadow-lg ${className}`}
       >
         {children}
       </motion.div>
     );
   }
-  return (
 
-    
+  return (
     <main className="flex min-h-screen items-center justify-center px-8">
       <div
         className="w-full max-w-3xl p-8 rounded-lg shadow-md border"
@@ -45,187 +89,102 @@ export default function Welcome() {
           borderColor: "#444",
         }}
       >
-
-<div className="space-y-16">
-
-      {/* First hero section */}
-      <div className="relative w-full h-64 md:h-96 lg:h-[500px]">
-        {/* Image slides in */}
-        <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src="/image.jpg"
-            alt="Background"
-            fill
-            className="object-cover"
-            priority
-          />
-        </motion.div>
-
-        {/* Text slides in separately, slightly slower */}
-        <motion.div
-          initial={{ x: -300, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-            Mon texte par-dessus l’image
-          </h1>
-        </motion.div>
-      </div>
-
-      {/* Second hero section */}
-      <div className="relative w-full h-64 md:h-96 lg:h-[500px]">
-        {/* Background slides in */}
-        <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/image2.jpg')" }}
-        />
-
-        {/* Text slides in separately */}
-        <motion.div
-          initial={{ x: -300, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-            Mon texte par-dessus l’image
-          </h1>
-        </motion.div>
-      </div>
-
-    </div>
-
         <div className="space-y-16">
-
-      {/* First hero section */}
-      <motion.div
-        className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        {/* Image */}
-        <Image
-          src="/image.jpg"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
-
-        {/* Text overlay */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          whileHover={{ x: 10 }} // moves text slightly on hover
-          transition={{ duration: 0.3 }}
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-            Mon texte par-dessus l’image
-          </h1>
-        </motion.div>
-      </motion.div>
-
-      {/* Second hero section */}
-      <motion.div
-        className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{ backgroundImage: "url('/image2.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
-      >
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          whileHover={{ y: -10, rotate: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-            Mon texte par-dessus l’image
-          </h1>
-        </motion.div>
-      </motion.div>
-
-    </div>
-
-        
-        <h1 className="text-3xl font-extrabold mb-4 flex items-center gap-2">
-          <Image
-            src="/favicon.ico"
-            alt="Logo"
-            width={32}
-            height={32}
-            className="w-8 h-8"
+          {/* First hero section */}
+          <HeroSection
+            image="/image.jpg"
+            text="Mon texte par-dessus l’image"
+            duration={1.2}
+            direction="left"
           />
-          Welcome to the SanSuBagier !
-        </h1>
-
-        <div className="relative w-full h-64 md:h-96 lg:h-[500px]">
-          {/* Image en arrière-plan */}
-          <Image
-            src="/image.jpg"
-            alt="Background"
-            fill
-            className="object-cover"
-            priority
+          <HeroSection
+            image="/image2.jpg"
+            text="Autre texte"
+            duration={2}
+            direction="right"
           />
+          <motion.section
+            ref={colorRef}
+            style={{ backgroundColor: bgColor }}
+            className="flex min-h-screen items-center justify-center"
+          >
+            <motion.h1 className="text-5xl font-bold">
+              Colorful Scroll ✨
+            </motion.h1>
+          </motion.section>
 
-          {/* Texte par-dessus */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-              Mon texte par-dessus l’image
-            </h1>
-          </div>
+          <section
+            ref={ref}
+            className="h-screen flex items-center justify-center bg-gray-100"
+          >
+            <motion.div
+              viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
+              style={{ x }}
+              className="p-10 bg-white shadow-xl rounded-xl text-xl font-bold"
+            >
+              I move slightly left and right when you scroll 🚀
+            </motion.div>
+          </section>
         </div>
 
-        <div
-          className="relative w-full h-64 md:h-96 lg:h-[500px] bg-cover bg-center flex items-center justify-center"
-          style={{ backgroundImage: "url('/image2.jpg')" }}
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-            Mon texte par-dessus l’image
-          </h1>
+        <div className="space-y-16">
+          {/* First hero section */}
+          <motion.div
+            viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
+            className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            {/* Image */}
+            <Image
+              src="/image.jpg"
+              alt="Background"
+              fill
+              className="object-cover"
+              priority
+            />
+
+            {/* Text overlay */}
+            <motion.div
+              viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
+              className="absolute inset-0 flex items-center justify-center"
+              whileHover={{ x: 10 }} // moves text slightly on hover
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+                Mon texte par-dessus l’image
+              </h1>
+            </motion.div>
+          </motion.div>
+
+          {/* Second hero section */}
+          <motion.div
+            viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
+            className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            style={{
+              backgroundImage: "url('/image2.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <motion.div
+              viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
+              className="absolute inset-0 flex items-center justify-center"
+              whileHover={{ y: -10, rotate: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+                Mon texte par-dessus l’image
+              </h1>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Animation d’entrée au scroll */}
 
-        <SlideIn from="left" duration={6}>
-          <h2>Section de gauche (2s)</h2>
-        </SlideIn>
-        <SlideIn from="right" duration={6}>
-          <h2>Section de gauche (2s)</h2>
-        </SlideIn>
-        <div className="space-y-32 p-8">
-          <motion.div
-            initial={{ x: -200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-blue-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de gauche</h2>
-            <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ x: 200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-green-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de droite</h2>
-            <p>Ce bloc arrive depuis la droite quand on scroll.</p>
-          </motion.div>
-        </div>
-
-      <motion.span
+        <motion.span
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
           transition={{ duration: 2, ease: "linear" }}
@@ -234,52 +193,30 @@ export default function Welcome() {
           Welcome to the SanSuBagier !
         </motion.span>
 
-        
-
         {/* Versions ralenties */}
-        <div className="space-y-32 p-8">
-          <motion.div
-            initial={{ x: -200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2 }}
-            viewport={{ once: true }}
-            className="bg-blue-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de gauche (2s)</h2>
-          </motion.div>
+        {/* Slide-in blocks */}
+        <SlideIn from="left" duration={1} className="bg-blue-200">
+          <h2 className="text-2xl font-bold">Section de gauche</h2>
+          <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
+        </SlideIn>
 
-          <motion.div
-            initial={{ x: 200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2 }}
-            viewport={{ once: true }}
-            className="bg-green-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de droite (2s)</h2>
-          </motion.div>
-        </div>
+        <SlideIn from="right" duration={1} className="bg-green-200">
+          <h2 className="text-2xl font-bold">Section de droite</h2>
+          <p>Ce bloc arrive depuis la droite quand on scroll.</p>
+        </SlideIn>
 
-        <div className="space-y-32 p-8">
-          <motion.div
-            initial={{ x: -200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 4 }}
-            viewport={{ once: true }}
-            className="bg-blue-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de gauche (4s)</h2>
-          </motion.div>
+        {/* Hero sections */}
+        <HeroSection image="/image.jpg" text="Hoverable" hover />
+        <HeroSection image="/image2.jpg" text="Static" direction="right" />
 
-          <motion.div
-            initial={{ x: 200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 4, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="bg-green-200 p-6 rounded-lg shadow-lg"
-          >
-            <h2 className="text-2xl font-bold">Section de droite (4s)</h2>
-          </motion.div>
-        </div>
+        {/* Slow versions */}
+        <SlideIn from="left" duration={1} className="bg-blue-200">
+          <h2>Fast Left</h2>
+        </SlideIn>
+
+        <SlideIn from="right" duration={4} className="bg-green-200">
+          <h2>Slow Right</h2>
+        </SlideIn>
       </div>
     </main>
   );
