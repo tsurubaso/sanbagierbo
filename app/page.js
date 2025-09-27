@@ -19,7 +19,7 @@ export default function Welcome() {
     [0, 0.5, 1],
     ["-50px", "0px", "50px"]
   );
-
+  
   const colorRef = useRef(null);
 
   const { scrollYProgress: colorProgress } = useScroll({
@@ -28,7 +28,7 @@ export default function Welcome() {
   });
 
   const bgColor = useTransform(colorProgress, [0, 1], ["#1e3a8a", "#facc15"]);
-
+const textColor = useTransform(colorProgress, [0, 1], ["#ffffff", "#000000"]);
   // ---------- COMPONENTS ----------
   function HeroSection({
     image,
@@ -92,30 +92,37 @@ export default function Welcome() {
         <div className="space-y-16">
           {/* First hero section */}
           <div className="space-y-8">
-            <p>
-              Our objective is to create a new medium — a fresh way to enjoy
-              creativity centered on authors. We want this tool to be
-              essentially the first space for any author to promote and share
-              their work. Avoiding complexity, you can collaborate, exchange
-              views, and share easily.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <p>
+                Our objective is to create a new medium — a fresh way to enjoy
+                creativity centered on authors. We want this tool to be
+                essentially the first space for any author to promote and share
+                their work. Avoiding complexity, you can collaborate, exchange
+                views, and share easily.
+              </p>
 
-            <h1>Reader</h1>
-            <p>We prioritize simplicity and easy access.</p>
+              <h1>Reader</h1>
+              <p>We prioritize simplicity and easy access.</p>
 
-            <h1>Editor</h1>
-            <p>
-              A tool to collaborate with others, work hand in hand with
-              collaborators, share, and correct without altering the original
-              draft.
-            </p>
+              <h1>Editor</h1>
+              <p>
+                A tool to collaborate with others, work hand in hand with
+                collaborators, share, and correct without altering the original
+                draft.
+              </p>
 
-            <h1>Merger</h1>
-            <p>
-              This app, for now only accessible on your PC, will be reserved for
-              authors and editors-in-chief for reviewing corrections and merging
-              them into the final version.
-            </p>
+              <h1>Merger</h1>
+              <p>
+                This app, for now only accessible on your PC, will be reserved
+                for authors and editors-in-chief for reviewing corrections and
+                merging them into the final version.
+              </p>
+            </motion.div>
           </div>
           <HeroSection
             image="/image.jpg"
@@ -132,16 +139,19 @@ export default function Welcome() {
           <motion.section
             ref={colorRef}
             style={{ backgroundColor: bgColor }}
-            className="flex min-h-screen items-center justify-center"
+            className="flex min-h-[500px] items-center justify-center"
           >
-            <motion.h1 className="text-5xl font-bold">
+            <motion.h1
+              style={{ color: textColor }}
+              className="text-5xl font-bold"
+            >
               Colorful Scroll ✨
             </motion.h1>
           </motion.section>
 
           <section
             ref={ref}
-            className="h-screen flex items-center justify-center bg-gray-100"
+            className="min-h-[500px] flex items-center justify-center bg-gray-100"
           >
             <motion.div
               viewport={{ amount: 0.3, once: false }} // 👈 controls when effect starts
