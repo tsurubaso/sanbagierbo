@@ -91,6 +91,32 @@ export default function Welcome() {
       >
         <div className="space-y-16">
           {/* First hero section */}
+          <div className="space-y-8">
+            <p>
+              Our objective is to create a new medium — a fresh way to enjoy
+              creativity centered on authors. We want this tool to be
+              essentially the first space for any author to promote and share
+              their work. Avoiding complexity, you can collaborate, exchange
+              views, and share easily.
+            </p>
+
+            <h1>Reader</h1>
+            <p>We prioritize simplicity and easy access.</p>
+
+            <h1>Editor</h1>
+            <p>
+              A tool to collaborate with others, work hand in hand with
+              collaborators, share, and correct without altering the original
+              draft.
+            </p>
+
+            <h1>Merger</h1>
+            <p>
+              This app, for now only accessible on your PC, will be reserved for
+              authors and editors-in-chief for reviewing corrections and merging
+              them into the final version.
+            </p>
+          </div>
           <HeroSection
             image="/image.jpg"
             text="Mon texte par-dessus l’image"
@@ -193,7 +219,6 @@ export default function Welcome() {
           Welcome to the SanSuBagier !
         </motion.span>
 
-        {/* Versions ralenties */}
         {/* Slide-in blocks */}
         <SlideIn from="left" duration={1} className="bg-blue-200">
           <h2 className="text-2xl font-bold">Section de gauche</h2>
