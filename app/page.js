@@ -18,6 +18,8 @@ export default function ComparePage() {
     loadFiles();
   }, []);
 
+  
+
   return (
     <div>
       <h1>Fusion interactive</h1>

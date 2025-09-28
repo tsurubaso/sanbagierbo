@@ -36,9 +36,22 @@ export default function InteractiveMerge({ original, modified }) {
   }, [blocks]);
 
   function handleChoice(id, choice) {
-    setBlocks((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, choice } : b))
-    );
+    setBlocks((prev) => prev.map((b) => (b.id === id ? { ...b, choice } : b)));
+  }
+
+  async function saveFinal() {
+    const res = await fetch("/api/save-merged", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mergedText,
+        filePath: "docs/myfile.md",
+        branchesToDelete: ["feature1", "feature2"], // ex.
+      }),
+    });
+
+    const data = await res.json();
+    console.log("✅ Sauvegarde terminée", data);
   }
 
   return (
@@ -85,11 +98,20 @@ export default function InteractiveMerge({ original, modified }) {
       </div>
 
       {/* Editeur de prévisualisation */}
-      <div className="w-2/3">
+      <div className="w-2/3 space-y-4">
+        {/* Bouton de sauvegarde */}
+        <button
+          onClick={saveFinal}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Sauvegarder la version finale
+        </button>
+
+        {/* Editeur de prévisualisation */}
         <Editor
           height="80vh"
           defaultLanguage="markdown"
-          value={mergedText}
+          value={mergedText} // ou useState si tu veux éditer avant sauvegarde
           options={{
             readOnly: false,
             wordWrap: "on",
