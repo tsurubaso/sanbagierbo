@@ -1,65 +1,102 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Editor, { DiffEditor } from "@monaco-editor/react";
+import { useState, useEffect } from "react";
+import Editor from "@monaco-editor/react";
 import { diffLines } from "diff";
 
-// fonction de merge simple
-function mergeText(original, modified) {
-  const changes = diffLines(original, modified);
-  let merged = "";
-  changes.forEach((part) => {
-    if (part.added) {
-      merged += part.value; // lignes ajoutées → on garde
-    } else if (!part.removed) {
-      merged += part.value; // lignes inchangées
-    }
-    // ⚠️ les parties supprimées ne sont pas reprises
-  });
-  return merged;
-}
-
-export default function DiffViewer({ original, modified }) {
-  const editorRef = useRef(null);
-  const [mounted, setMounted] = useState(false);
+export default function InteractiveMerge({ original, modified }) {
+  const [blocks, setBlocks] = useState([]);
+  const [mergedText, setMergedText] = useState("");
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    const diff = diffLines(original, modified);
+    // Chaque élément du diff devient un bloc à choisir
+    const initialBlocks = diff.map((part, idx) => ({
+      id: idx,
+      value: part.value,
+      added: part.added || false,
+      removed: part.removed || false,
+      choice: !part.added && !part.removed ? "both" : null, // "both" = pas de choix nécessaire
+    }));
+    setBlocks(initialBlocks);
+  }, [original, modified]);
 
-  if (!mounted) return <p>Loading editor…</p>;
+  useEffect(() => {
+    // Recalcule le texte fusionné selon les choix
+    const merged = blocks
+      .map((block) => {
+        if (block.choice === "original" && block.removed) return block.value;
+        if (block.choice === "modified" && block.added) return block.value;
+        if (block.choice === "both" || (!block.added && !block.removed))
+          return block.value;
+        return "";
+      })
+      .join("");
+    setMergedText(merged);
+  }, [blocks]);
 
-  // ✅ calcul du texte fusionné
-  const mergedText = mergeText(original, modified);
+  function handleChoice(id, choice) {
+    setBlocks((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, choice } : b))
+    );
+  }
 
   return (
-    <div style={{ height: "70vh", border: "1px solid #ccc" }}>
-      {/* éditeur de comparaison */}
-      <DiffEditor
-        height="50%"
-        original={original}
-        modified={modified}
-        language="markdown"
-        options={{
-          renderSideBySide: true,
-          minimap: { enabled: false },
-          wordWrap: "on",
-          readOnly: true,
-          automaticLayout: true,
-        }}
-      />
+    <div className="flex gap-4">
+      {/* Liste des blocs avec boutons */}
+      <div className="w-1/3 border-r pr-2 space-y-2 text-sm">
+        <h2 className="font-bold mb-2">Résolution des conflits</h2>
+        {blocks.map((block) => (
+          <div
+            key={block.id}
+            className={`p-2 rounded ${
+              block.added
+                ? "bg-green-100"
+                : block.removed
+                ? "bg-red-100"
+                : "bg-gray-50"
+            }`}
+          >
+            <pre className="whitespace-pre-wrap">{block.value}</pre>
+            {(block.added || block.removed) && (
+              <div className="mt-1 flex gap-2">
+                <button
+                  className="px-2 py-1 text-xs bg-blue-500 text-white rounded"
+                  onClick={() => handleChoice(block.id, "original")}
+                >
+                  Garder Original
+                </button>
+                <button
+                  className="px-2 py-1 text-xs bg-green-500 text-white rounded"
+                  onClick={() => handleChoice(block.id, "modified")}
+                >
+                  Garder Modifié
+                </button>
+                <button
+                  className="px-2 py-1 text-xs bg-gray-500 text-white rounded"
+                  onClick={() => handleChoice(block.id, "both")}
+                >
+                  Garder les deux
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
 
-      {/* éditeur final avec texte fusionné */}
-      <Editor
-        height="50%"
-        defaultLanguage="markdown"
-        value={mergedText} // 🔑 utiliser value et non defaultValue si tu veux garder le contrôle
-        options={{
-          readOnly: false,
-          wordWrap: "on",
-          minimap: { enabled: false },
-        }}
-      />
+      {/* Editeur de prévisualisation */}
+      <div className="w-2/3">
+        <Editor
+          height="80vh"
+          defaultLanguage="markdown"
+          value={mergedText}
+          options={{
+            readOnly: false,
+            wordWrap: "on",
+            minimap: { enabled: false },
+          }}
+        />
+      </div>
     </div>
   );
 }

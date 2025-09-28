@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DiffViewer from "@/components/DiffViewer";
+
+import InteractiveMerge from "@/components/DiffViewer";
 
 export default function ComparePage() {
   const [original, setOriginal] = useState("");
@@ -19,9 +20,9 @@ export default function ComparePage() {
 
   return (
     <div>
-      <h1>Comparaison de versions</h1>
+      <h1>Fusion interactive</h1>
       {original && modified ? (
-        <DiffViewer original={original} modified={modified} />
+        <InteractiveMerge original={original} modified={modified} />
       ) : (
         <p>Chargement…</p>
       )}
