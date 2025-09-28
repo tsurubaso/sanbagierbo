@@ -3,15 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import Editor, { DiffEditor } from "@monaco-editor/react";
 import { diffLines } from "diff";
+
+// fonction de merge simple
 function mergeText(original, modified) {
   const changes = diffLines(original, modified);
   let merged = "";
-  changes.forEach(part => {
+  changes.forEach((part) => {
     if (part.added) {
-      merged += part.value;       // take added lines from modified
+      merged += part.value; // lignes ajoutées → on garde
     } else if (!part.removed) {
-      merged += part.value;       // unchanged lines
+      merged += part.value; // lignes inchangées
     }
+    // ⚠️ les parties supprimées ne sont pas reprises
   });
   return merged;
 }
@@ -21,42 +24,42 @@ export default function DiffViewer({ original, modified }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // assure que le composant est monté côté client
     setMounted(true);
   }, []);
 
   if (!mounted) return <p>Loading editor…</p>;
 
+  // ✅ calcul du texte fusionné
+  const mergedText = mergeText(original, modified);
+
   return (
     <div style={{ height: "70vh", border: "1px solid #ccc" }}>
-<DiffEditor
-  height="100%"
-  original={original}
-  modified={modified}
-  language="markdown"
-  options={{
-    renderSideBySide: true,
-    minimap: { enabled: false },
-    wordWrap: "on", // "bounded" can be finicky; "on" is more reliable
-    readOnly: true,
-    automaticLayout: true,
-  }}
-/>
+      {/* éditeur de comparaison */}
+      <DiffEditor
+        height="50%"
+        original={original}
+        modified={modified}
+        language="markdown"
+        options={{
+          renderSideBySide: true,
+          minimap: { enabled: false },
+          wordWrap: "on",
+          readOnly: true,
+          automaticLayout: true,
+        }}
+      />
 
-<Editor
-  height="70vh"
-  defaultLanguage="markdown"
-  defaultValue={mergedText}
-  options={{
-    readOnly: false,
-    wordWrap: "on",
-    minimap: { enabled: false },
-  }}
-/>
+      {/* éditeur final avec texte fusionné */}
+      <Editor
+        height="50%"
+        defaultLanguage="markdown"
+        value={mergedText} // 🔑 utiliser value et non defaultValue si tu veux garder le contrôle
+        options={{
+          readOnly: false,
+          wordWrap: "on",
+          minimap: { enabled: false },
+        }}
+      />
     </div>
-
-
-
-
   );
 }
