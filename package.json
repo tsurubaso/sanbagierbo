@@ -2,6 +2,7 @@
   "name": "sanbagierbo",
   "version": "0.1.0",
   "private": true,
+  "description": "Pour les éditeurs, les écrivains, les lecteurs, et tous ceux de la promo",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
