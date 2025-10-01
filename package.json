@@ -2,7 +2,7 @@
   "name": "sanbagierbo",
   "version": "0.1.0",
   "private": true,
-  "description": "Pour les éditeurs, les écrivains, les lecteurs, et tous ceux de la promo",
+  "description": "Pour les éditeurs, les écrivains, les lecteurs, et tous ceux de la promo, un outil indispensable",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -14,6 +14,7 @@
     "diff": "^8.0.2",
     "framer-motion": "^12.23.22",
     "next": "15.5.4",
+    "next-auth": "^4.24.11",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
