@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
+
 export async function POST(req) {
   const session = await getServerSession(authOptions);
 
@@ -9,7 +10,7 @@ export async function POST(req) {
   }
 
   const res = await fetch(
-    "https://api.github.com/repos/tsurubaso/bibliotheque/contents/testFromApi.txt",
+    "https://api.github.com/repos/tsurubaso/bibliotheque/contents/testFromApi2.txt",
     {
       method: "PUT",
       headers: {
