@@ -1,24 +1,27 @@
+// app/page.js
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
+import PackageInfo from "@/components/PackageInfo";
+import GitHubAuth from "@/components/GitHubAuth";
+import BooksSidebar from "@/components/BooksListAndVersionOnGit";
 
-export default function Home() {
-  const { data: session } = useSession();
+  const handleSelectVersions = (book, versions) => {
+    console.log("Selected book:", book);
+    console.log("Selected versions:", versions);
+    // You can load the content here, update editor, etc.
+  };
 
-  async function createFile() {
-    const res = await fetch("/api/github/create-file", { method: "POST" });
-    const data = await res.json();
-    console.log(data);
-  }
-
-  if (!session) {
-    return <button onClick={() => signIn("github")}>Login avec GitHub</button>;
-  }
-
+export default function Page() {
   return (
-    <div>
-      <p>Connecté : {session.user.name}</p>
-      <button onClick={() => signOut()}>Logout</button>
-      <button onClick={createFile}>Créer un fichier dans mon repo</button>
-    </div>
+    <>
+    <BooksSidebar onSelectVersions={handleSelectVersions} />
+      <PackageInfo />
+
+      
+
+      <main className="flex flex-col items-center min-h-screen p-6 gap-6">
+        <h1 className="text-3xl font-bold">Connection to GitHub</h1>
+        <GitHubAuth />
+      </main>
+    </>
   );
 }

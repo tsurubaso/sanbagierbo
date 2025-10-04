@@ -1,11 +1,12 @@
-// app/page.js
+"use client";
+
 import packageJson from "../package.json";
 
-export default function Page() {
+export default function PackageInfo() {
   const { name, version, description, dependencies, devDependencies } = packageJson;
 
   return (
-    <main className="min-h-screen bg-black-500 p-12 flex flex-col items-center">
+    <main className="bg-black-500 p-12 flex flex-col items-center">
       {/* HEADER */}
       <div className="text-center mb-16 mt-12">
         <h1 className="text-5xl font-extrabold tracking-tight text-gray-800">

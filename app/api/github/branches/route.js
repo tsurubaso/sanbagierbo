@@ -3,21 +3,18 @@ import { authOptions } from "../../auth/[...nextauth]/route";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-
-  if (!session?.accessToken) {
+      if (!session?.accessToken) {
     return new Response(JSON.stringify({ error: "Not authenticated" }), { status: 401 });
   }
 
   const res = await fetch(
-    "https://api.github.com/repos/tsurubaso/bibliotheque/contents",
+    "https://api.github.com/repos/tsurubaso/bibliotheque/branches",
     {
       headers: {
         Authorization: `token ${session.accessToken}`,
       },
     }
   );
-
-  const files = await res.json();
-  // tout le contenu
-  return Response.json(files);
+  const branches = await res.json();
+  return Response.json(branches.map(b => b.name));
 }
