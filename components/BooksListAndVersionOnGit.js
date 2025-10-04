@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useState, useEffect } from "react";
 
 export default function BooksSidebar({ onSelectVersions }) {
@@ -13,16 +14,21 @@ export default function BooksSidebar({ onSelectVersions }) {
     fetch("/api/github/branches").then((r) => r.json()).then(setBranches);
   }, []);
 
+ // notify parent when book or versions change
+  useEffect(() => {
+    if (selectedBook) {
+      onSelectVersions?.(selectedBook, selectedVersions);
+    }
+  }, [selectedBook, selectedVersions, onSelectVersions]);
+
   function toggleVersion(branch) {
-    setSelectedVersions((prev) => {
-      const newSelection = prev.includes(branch)
+    setSelectedVersions((prev) =>
+      prev.includes(branch)
         ? prev.filter((b) => b !== branch)
         : prev.length < 2
         ? [...prev, branch]
-        : prev;
-      onSelectVersions?.(selectedBook, newSelection); // notify parent
-      return newSelection;
-    });
+        : prev
+    );
   }
 
   return (
@@ -35,8 +41,7 @@ export default function BooksSidebar({ onSelectVersions }) {
             <button
               onClick={() => {
                 setSelectedBook(book.name);
-                setSelectedVersions([]);
-                onSelectVersions?.(book.name, []);
+                setSelectedVersions([]); // reset versions
               }}
               className={`w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition ${
                 selectedBook === book.name ? "bg-gray-700 font-semibold" : ""
@@ -65,17 +70,6 @@ export default function BooksSidebar({ onSelectVersions }) {
           </li>
         ))}
       </ul>
-
-      {selectedVersions.length > 0 && (
-        <div className="mt-6 text-gray-300">
-          <p className="font-semibold">Selected versions:</p>
-          <ul className="pl-2">
-            {selectedVersions.map((v) => (
-              <li key={v}>{v}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </nav>
   );
 }

@@ -11,7 +11,7 @@ export async function DELETE(req) {
   const { name, sha } = await req.json();
 
   const res = await fetch(
-    `https://api.github.com/repos/tsurubaso/bibliotheque/contents/${name}`,
+    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents/${name}`,
     {
       method: "DELETE",
       headers: {

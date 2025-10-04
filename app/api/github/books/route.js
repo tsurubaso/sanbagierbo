@@ -9,7 +9,7 @@ export async function GET() {
   }
 
   const res = await fetch(
-    "https://api.github.com/repos/tsurubaso/bibliotheque/contents?ref=master",
+    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents?ref=master`,
     {
       headers: {
         Authorization: `token ${session.accessToken}`,
