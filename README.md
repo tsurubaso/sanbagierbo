@@ -7,54 +7,53 @@
 </h1>
 
 <p align="center">
-  Un nouvel espace pour les auteurs et la collaboration créative.
+  ✨ Un espace créatif pour auteurs et éditeurs, simple et ludique ! ✨
 </p>
 
 ---
 
-<div style="background-color:#1e3a8a; padding:8px; color:white; text-align:center; border-radius:5px;">
-  <strong>Notre objectif</strong>
+<div style="background:linear-gradient(90deg,#f97316,#facc15); padding:10px; border-radius:8px; text-align:center; color:#000;">
+  🚀 <strong>Notre objectif</strong> 🚀
 </div>
 
-Créer un nouveau médium — une manière inédite de vivre la créativité autour des auteurs.  
-Nous voulons que cet outil devienne le premier espace où chaque auteur puisse promouvoir et partager son travail.  
-Sans complexité inutile, il permet de collaborer, d’échanger des points de vue et de partager facilement.
+🎨 Créer un nouveau médium pour profiter de la créativité centrée sur les auteurs.  
+Nous voulons que chaque auteur puisse partager et promouvoir son travail facilement, collaborer et échanger sans complications.  
 
 ---
 
-<div style="background-color:#2563eb; padding:8px; color:white; text-align:center; border-radius:5px;">
-  <strong>Lecteur</strong>
+<div style="background:#34d399; padding:10px; border-radius:8px; text-align:center; color:#000;">
+  📖 <strong>Lecteur</strong> 📖
 </div>
 
-Nous plaçons la simplicité et l’accès direct au cœur de l’expérience.
+Simplicité et accès direct au contenu avant tout. Profitez de la lecture sans effort.  
 
 ---
 
-<div style="background-color:#1e40af; padding:8px; color:white; text-align:center; border-radius:5px;">
-  <strong>Éditeur</strong>
+<div style="background:#60a5fa; padding:10px; border-radius:8px; text-align:center; color:#fff;">
+  ✍️ <strong>Éditeur</strong> ✍️
 </div>
 
-Un outil pour collaborer, travailler main dans la main avec ses partenaires, partager et corriger sans jamais altérer la version originale du texte.
+Travaillez main dans la main avec vos collaborateurs, partagez et corrigez sans jamais toucher à l’original.  
 
 ---
 
-<div style="background-color:#1e3a8a; padding:8px; color:white; text-align:center; border-radius:5px;">
-  <strong>Fusionneur</strong>
+<div style="background:#a78bfa; padding:10px; border-radius:8px; text-align:center; color:#fff;">
+  🔀 <strong>Fusionneur</strong> 🔀
 </div>
 
-Cette application, pour l’instant accessible uniquement sur ordinateur, est destinée aux auteurs et rédacteurs en chef.  
-Elle permet de relire, comparer les corrections et fusionner les versions dans un texte final harmonisé.
+Pour l’instant sur ordinateur uniquement, cette app permet de relire, comparer et fusionner les corrections pour créer une version finale harmonisée.  
 
 ---
 
-<div style="background-color:#2563eb; padding:8px; color:white; text-align:center; border-radius:5px;">
-  <strong>Évolutions futures</strong>
+<div style="background:#f472b6; padding:10px; border-radius:8px; text-align:center; color:#fff;">
+  🌈 <strong>Évolutions futures</strong> 🌈
 </div>
 
-Nous prévoyons d’ajouter :
-
-- la possibilité d’intégrer des **images, photos, dessins et modèles 3D**,
-- des **fonctionnalités de partage** sur les **réseaux sociaux** et d’autres plateformes,
-- ainsi que de nouvelles options de **collaboration créative** pour enrichir encore davantage les œuvres.
+Bientôt :  
+- 🖼 Ajouter **images, photos, dessins et modèles 3D**  
+- 🌐 Partager facilement sur **réseaux sociaux**  
+- 🤝 Nouvelles options de **collaboration créative**  
 
 ---
+
+<p align="center">✨ Let's make creativity fun again! ✨</p>
