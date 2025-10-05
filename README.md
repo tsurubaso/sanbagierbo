@@ -1,8 +1,10 @@
 <p align="center">
-  <img src="./public/favicon.ico" alt="SanSuBagier Logo" width="64" height="64" />
+  <img src="app/favicon.ico" alt="Sanbagierbo
+ Logo" width="64" height="64" />
 </p>
 
-<h1 align="center">SanSuBagier</h1>
+<h1 align="center">Sanbagierbo
+</h1>
 
 <p align="center">
   Un nouvel espace pour les auteurs et la collaboration créative.
@@ -16,7 +18,7 @@
 
 Créer un nouveau médium — une manière inédite de vivre la créativité autour des auteurs.  
 Nous voulons que cet outil devienne le premier espace où chaque auteur puisse promouvoir et partager son travail.  
-Sans complexité inutile, il permet de collaborer, d’échanger des points de vue et de partager facilement.  
+Sans complexité inutile, il permet de collaborer, d’échanger des points de vue et de partager facilement.
 
 ---
 
@@ -24,7 +26,7 @@ Sans complexité inutile, il permet de collaborer, d’échanger des points de v
   <strong>Lecteur</strong>
 </div>
 
-Nous plaçons la simplicité et l’accès direct au cœur de l’expérience.  
+Nous plaçons la simplicité et l’accès direct au cœur de l’expérience.
 
 ---
 
@@ -32,7 +34,7 @@ Nous plaçons la simplicité et l’accès direct au cœur de l’expérience.
   <strong>Éditeur</strong>
 </div>
 
-Un outil pour collaborer, travailler main dans la main avec ses partenaires, partager et corriger sans jamais altérer la version originale du texte.  
+Un outil pour collaborer, travailler main dans la main avec ses partenaires, partager et corriger sans jamais altérer la version originale du texte.
 
 ---
 
@@ -41,7 +43,7 @@ Un outil pour collaborer, travailler main dans la main avec ses partenaires, par
 </div>
 
 Cette application, pour l’instant accessible uniquement sur ordinateur, est destinée aux auteurs et rédacteurs en chef.  
-Elle permet de relire, comparer les corrections et fusionner les versions dans un texte final harmonisé.  
+Elle permet de relire, comparer les corrections et fusionner les versions dans un texte final harmonisé.
 
 ---
 
@@ -49,9 +51,10 @@ Elle permet de relire, comparer les corrections et fusionner les versions dans u
   <strong>Évolutions futures</strong>
 </div>
 
-Nous prévoyons d’ajouter :  
-- la possibilité d’intégrer des **images, photos, dessins et modèles 3D**,  
-- des **fonctionnalités de partage** sur les **réseaux sociaux** et d’autres plateformes,  
-- ainsi que de nouvelles options de **collaboration créative** pour enrichir encore davantage les œuvres.  
+Nous prévoyons d’ajouter :
+
+- la possibilité d’intégrer des **images, photos, dessins et modèles 3D**,
+- des **fonctionnalités de partage** sur les **réseaux sociaux** et d’autres plateformes,
+- ainsi que de nouvelles options de **collaboration créative** pour enrichir encore davantage les œuvres.
 
 ---
