@@ -21,14 +21,14 @@ export default function Welcome() {
       <div className="w-full max-w-3xl p-8 rounded-lg shadow-md border space-y-16">
         {/* Objectif */}
 
-        <HeroSection text="Full Moon" image="/image.jpg" hover >
+        <HeroSection direction = "right" duration="3" text="Full Moon" image="/image.jpg" hover >
         <MotionEffects.GradientText
     text="🚀 Notre objectif 🚀"
     className="text-3xl font-bold text-center"
   />
         </HeroSection >
 
-         <SlideIn from="left" className="bg-gray-600">
+         <SlideIn duration="3" from="left" className="bg-gray-600">
           <h2 className="text-2xl font-bold">Créer un nouveau médium pour aider la créativité de nos auteurs. Chacun d&apos;eux pourra partager et promouvoir son travail facilement, collaborer et échanger sans complications.</h2>
         </SlideIn>
 
