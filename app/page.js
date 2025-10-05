@@ -2,10 +2,22 @@
 import { motion } from "framer-motion";
 import MotionEffects from "@/components/MotionEffects";
 
+const {
+  PulseText,
+  FadeIn,
+  GradientText,
+  TypingText,
+  HoverZoom,
+  HeroSection,
+  ScrollColorSection,
+  ScrollShiftSection,
+  AnimatedText,
+  SlideIn,
+} = MotionEffects;
+
 export default function Welcome() {
   return (
     <main className="flex min-h-screen items-center justify-center py-2 px-8">
-      
       <div className="w-full max-w-3xl p-8 rounded-lg shadow-md border space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,36 +50,34 @@ export default function Welcome() {
             them into the final version.
           </p>
         </motion.div>
+
         <div className="p-8 space-y-16">
-        <MotionEffects.PulseText
-          text="A New Way to Create"
-          className="text-3xl font-bold"
-        />
+          <PulseText text="A New Way to Create" className="text-3xl font-bold" />
 
-        <MotionEffects.FadeIn direction="left">
-          <p>This text fades in from the left.</p>
-        </MotionEffects.FadeIn>
+          <FadeIn direction="left">
+            <p>This text fades in from the left.</p>
+          </FadeIn>
 
-        <MotionEffects.GradientText
-          text="Welcome to SanSuBagier"
-          className="text-4xl font-bold"
-        />
+          <GradientText
+            text="Welcome to SanSuBagier"
+            className="text-4xl font-bold"
+          />
 
-        <MotionEffects.TypingText
-          text="Let's build something amazing."
-          className="text-xl"
-        />
+          <TypingText
+            text="Let's build something amazing."
+            className="text-xl"
+          />
 
-        <MotionEffects.HoverZoom>
-          <div className="bg-blue-100 p-4 rounded-lg shadow-md">Hover me!</div>
-        </MotionEffects.HoverZoom>
-      </div>
+          <HoverZoom>
+            <div className="bg-blue-100 p-4 rounded-lg shadow-md">Hover me!</div>
+          </HoverZoom>
+        </div>
 
         <motion.div
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
-          <MotionEffects.HeroSection image="/image.jpg" text="Interactive Image" />
+          <HeroSection image="/image.jpg" text="Interactive Image" />
         </motion.div>
 
         <motion.span
@@ -87,22 +97,22 @@ export default function Welcome() {
           ))}
         </motion.span>
 
-        <MotionEffects.HeroSection image="/image.jpg" text="Mon texte par-dessus l’image" />
-        <MotionEffects.HeroSection image="/image2.jpg" text="Autre texte" direction="right" />
-        <MotionEffects.ScrollColorSection />
-        <MotionEffects.ScrollShiftSection />
-        <MotionEffects.AnimatedText
+        <HeroSection image="/image.jpg" text="Mon texte par-dessus l’image" />
+        <HeroSection image="/image2.jpg" text="Autre texte" direction="right" />
+        <ScrollColorSection />
+        <ScrollShiftSection />
+        <AnimatedText
           text="Welcome to the SanSuBagier !"
           duration={6}
           className="text-2xl font-semibold"
         />
-        <MotionEffects.SlideIn from="left" className="bg-blue-200">
+        <SlideIn from="left" className="bg-blue-200">
           <h2 className="text-2xl font-bold">Section de gauche</h2>
           <p>Ce bloc arrive depuis la gauche quand on scroll.</p>
-        </MotionEffects.SlideIn>
+        </SlideIn>
 
-        <MotionEffects.HeroSection image="/image.jpg" text="Hoverable" hover />
-        <MotionEffects.HeroSection image="/image2.jpg" text="Static" direction="right" />
+        <HeroSection image="/image.jpg" text="Hoverable" hover />
+        <HeroSection image="/image2.jpg" text="Static" direction="right" />
       </div>
     </main>
   );

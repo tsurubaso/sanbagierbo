@@ -1,4 +1,10 @@
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//old structure keep for info, will be destroyed
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 "use client";
+
 
 import { useEffect, useState } from "react";
 import InteractiveMerge from "@/components/DiffViewer";

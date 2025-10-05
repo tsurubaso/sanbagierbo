@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="./public/favicon.ico" alt="SanSuBagier Logo" width="64" height="64" />
+</p>
 
-## Getting Started
+<h1 align="center">SanSuBagier</h1>
 
-First, run the development server:
+<p align="center">
+  Un nouvel espace pour les auteurs et la collaboration créative.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<div style="background-color:#1e3a8a; padding:8px; color:white; text-align:center; border-radius:5px;">
+  <strong>Notre objectif</strong>
+</div>
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Créer un nouveau médium — une manière inédite de vivre la créativité autour des auteurs.  
+Nous voulons que cet outil devienne le premier espace où chaque auteur puisse promouvoir et partager son travail.  
+Sans complexité inutile, il permet de collaborer, d’échanger des points de vue et de partager facilement.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+<div style="background-color:#2563eb; padding:8px; color:white; text-align:center; border-radius:5px;">
+  <strong>Lecteur</strong>
+</div>
 
-To learn more about Next.js, take a look at the following resources:
+Nous plaçons la simplicité et l’accès direct au cœur de l’expérience.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<div style="background-color:#1e40af; padding:8px; color:white; text-align:center; border-radius:5px;">
+  <strong>Éditeur</strong>
+</div>
 
-## Deploy on Vercel
+Un outil pour collaborer, travailler main dans la main avec ses partenaires, partager et corriger sans jamais altérer la version originale du texte.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div style="background-color:#1e3a8a; padding:8px; color:white; text-align:center; border-radius:5px;">
+  <strong>Fusionneur</strong>
+</div>
+
+Cette application, pour l’instant accessible uniquement sur ordinateur, est destinée aux auteurs et rédacteurs en chef.  
+Elle permet de relire, comparer les corrections et fusionner les versions dans un texte final harmonisé.  
+
+---
+
+<div style="background-color:#2563eb; padding:8px; color:white; text-align:center; border-radius:5px;">
+  <strong>Évolutions futures</strong>
+</div>
+
+Nous prévoyons d’ajouter :  
+- la possibilité d’intégrer des **images, photos, dessins et modèles 3D**,  
+- des **fonctionnalités de partage** sur les **réseaux sociaux** et d’autres plateformes,  
+- ainsi que de nouvelles options de **collaboration créative** pour enrichir encore davantage les œuvres.  
+
+---
