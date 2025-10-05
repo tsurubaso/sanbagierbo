@@ -19,37 +19,62 @@ export default function Welcome() {
   return (
     <main className="flex min-h-screen items-center justify-center py-2 px-8">
       <div className="w-full max-w-3xl p-8 rounded-lg shadow-md border space-y-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <p>
-            Our objective is to create a new medium — a fresh way to enjoy
-            creativity centered on authors. We want this tool to be essentially
-            the first space for any author to promote and share their work.
-            Avoiding complexity, you can collaborate, exchange views, and share
-            easily.
-          </p>
+        {/* Objectif */}
 
-          <h1>Reader</h1>
-          <p>We prioritize simplicity and easy access.</p>
+        <HeroSection text="Full Moon" image="/image.jpg" hover >
+        <MotionEffects.GradientText
+    text="🚀 Notre objectif 🚀"
+    className="text-3xl font-bold text-center"
+  />
+        </HeroSection >
 
-          <h1>Editor</h1>
-          <p>
-            A tool to collaborate with others, work hand in hand with
-            collaborators, share, and correct without altering the original
-            draft.
-          </p>
+         <SlideIn from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">Créer un nouveau médium pour aider la créativité de nos auteurs. Chacun d&apos;eux pourra partager et promouvoir son travail facilement, collaborer et échanger sans complications.</h2>
+        </SlideIn>
 
-          <h1>Merger</h1>
-          <p>
-            This app, for now only accessible on your PC, will be reserved for
-            authors and editors-in-chief for reviewing corrections and merging
-            them into the final version.
+        {/* Lecteur */}
+        <MotionEffects.GradientText
+          text="📖 Lecteur 📖"
+          className="text-2xl font-bold text-center"
+        />
+        <MotionEffects.FadeIn direction="left">
+          <p className="text-center">
+            Simplicité et accès direct au contenu avant tout. Profitez de la lecture sans effort.
           </p>
-        </motion.div>
+        </MotionEffects.FadeIn>
+
+        {/* Éditeur */}
+        <MotionEffects.GradientText
+          text="✍️ Éditeur ✍️"
+          className="text-2xl font-bold text-center"
+        />
+        <MotionEffects.FadeIn direction="right">
+          <p className="text-center">
+            Travaillez main dans la main avec vos collaborateurs, partagez et corrigez sans jamais toucher à l’original.
+          </p>
+        </MotionEffects.FadeIn>
+
+        {/* Fusionneur */}
+        <MotionEffects.GradientText
+          text="🔀 Fusionneur 🔀"
+          className="text-2xl font-bold text-center"
+        />
+        <MotionEffects.FadeIn direction="up">
+          <p className="text-center">
+            Pour l’instant sur ordinateur uniquement, cette app permet de relire, comparer et fusionner les corrections pour créer une version finale harmonisée.
+          </p>
+        </MotionEffects.FadeIn>
+
+        {/* Évolutions futures */}
+        <MotionEffects.GradientText
+          text="🌈 Évolutions futures 🌈"
+          className="text-2xl font-bold text-center"
+        />
+        <MotionEffects.PulseText
+          text="Bientôt : Ajouter images, photos, dessins et modèles 3D, partager sur réseaux sociaux, nouvelles options de collaboration créative."
+          className="text-lg text-center"
+        />
+
 
         <div className="p-8 space-y-16">
           <PulseText text="A New Way to Create" className="text-3xl font-bold" />

@@ -165,15 +165,17 @@ const SlideIn = ({ from = "left", duration = 1, children, className }) => {
 const HeroSection = ({
   image,
   text,
+  children,         // ← ajout
   duration = 1.5,
   direction = "left",
   hover = false,
+  rounded = "xl", // ajout optionnel
 }) => {
   const initialX = direction === "left" ? -200 : 200;
 
   return (
     <motion.div
-      className="relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden"
+      className={`relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden rounded-${rounded}`}
       initial={{ x: initialX, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration, ease: "easeOut" }}
@@ -185,7 +187,10 @@ const HeroSection = ({
         whileHover={hover ? { y: -10 } : {}}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-4xl font-bold text-white drop-shadow-lg">{text}</h1>
+         {/* Si on a des enfants, on les affiche ; sinon on garde le texte classique */}
+        {children || (
+          <h1 className="text-4xl font-bold text-white drop-shadow-lg">{text}</h1>
+        )}
       </motion.div>
     </motion.div>
   );

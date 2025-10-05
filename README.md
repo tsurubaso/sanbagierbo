@@ -56,4 +56,4 @@ Bientôt :
 
 ---
 
-<p align="center">✨ Let's make creativity fun again! ✨</p>
+<p align="center">✨ Let's make creativity much more fun! ✨</p>
