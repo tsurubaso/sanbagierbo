@@ -1,7 +1,7 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
-//import ThemeToggle from "@/components/ThemeToggle"; {/* Toggle client pour le thème */} <ThemeToggle /> not in use
-        
+import ThemeToggle from "@/components/ThemeToggle";
+
 import "./globals.css";
 
 export default function RootLayout({ children }) {
@@ -14,8 +14,11 @@ export default function RootLayout({ children }) {
           borderColor: "#444",
         }}
       >
-        <SessionProvider>{children}</SessionProvider>
-
+        <SessionProvider>
+          {/* Toggle client pour le thème */}
+          <ThemeToggle />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

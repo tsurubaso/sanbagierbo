@@ -1,3 +1,7 @@
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// //je dois reporter la logique, je supprime apres
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 const fs = require("fs").promises;
 const path = require("path");
 const matter = require("gray-matter");
