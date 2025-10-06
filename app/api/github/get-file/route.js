@@ -1,25 +1,18 @@
 // app/api/github/get-file/route.js
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { getFileContent } from "@/lib/github";
 
 export async function GET(req) {
-  const session = await getServerSession(authOptions);
-  if (!session) return new Response("Unauthorized", { status: 401 });
+  try {
+    const { searchParams } = new URL(req.url);
+    const book = searchParams.get("book");
+    const branch = searchParams.get("branch") || "master";
 
-  const { searchParams } = new URL(req.url);
-  const book = searchParams.get("book");
-  const branch = searchParams.get("branch");
+    if (!book) return new Response(JSON.stringify({ error: "Book is required" }), { status: 400 });
 
-  const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents/books/${book}.md?ref=${branch}`,
-    { headers: { Authorization: `token ${session.accessToken}` } }
-  );
+    const content = await getFileContent(book, branch);
 
-  const data = await res.json();
-  if (data.content) {
-    const content = Buffer.from(data.content, "base64").toString("utf-8");
-    return new Response(JSON.stringify({ content }));
+    return new Response(JSON.stringify({ content }), { status: 200 });
+  } catch (e) {
+    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
   }
-
-  return new Response(JSON.stringify({ error: data.message }), { status: 400 });
 }

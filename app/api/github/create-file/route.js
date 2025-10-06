@@ -1,30 +1,10 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
-
+import { createFile } from "@/lib/github";
 
 export async function POST(req) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.accessToken) {
-    return Response.json({ error: "Not authenticated" }, { status: 401 });
+  try {
+    const result = await createFile();
+    return Response.json(result);
+  } catch (e) {
+    return Response.json({ error: e.message }, { status: 500 });
   }
-
-  const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents/testFromApi2.txt`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `token ${session.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: "Add test.txt",
-        content: Buffer.from("Hello from NextAuth!").toString("base64"),
-         branch: "master", // ou master selon ton repo
-      }),
-    }
-  );
-
-  const data = await res.json();
-  return Response.json(data);
 }

@@ -1,20 +1,10 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import {listBranches } from "@/lib/github";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-      if (!session?.accessToken) {
-    return new Response(JSON.stringify({ error: "Not authenticated" }), { status: 401 });
+  try {
+    const branches  = await listBranches();
+    return Response.json(branches.map(b => b.name));
+  } catch (e) {
+    return Response.json({ error: e.message }, { status: 500 });
   }
-
-  const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/branches`,
-    {
-      headers: {
-        Authorization: `token ${session.accessToken}`,
-      },
-    }
-  );
-  const branches = await res.json();
-  return Response.json(branches.map(b => b.name));
 }

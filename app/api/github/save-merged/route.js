@@ -8,28 +8,30 @@ export async function POST(req) {
     const repoName = process.env.GITHUB_REPO;
     const token = process.env.GITHUB_TOKEN;
 
-    // 1️⃣ Récupérer le dernier commit de main
-    const mainRef = await fetch(
-      `https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/main`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    ).then(res => res.json());
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
 
-    const latestCommitSha = mainRef.object.sha;
+    // 1️⃣ Récupérer le SHA du fichier sur main
+    const fileRes = await fetch(
+      `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=main`,
+      { headers }
+    ).then(r => r.json());
 
-    // 2️⃣ Écrire le fichier sur main (mode "upsert")
+    const sha = fileRes.sha; // SHA du fichier à mettre à jour
+
+    // 2️⃣ Écrire le fichier sur main (upsert)
     await fetch(
       `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
       {
         method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+        headers,
         body: JSON.stringify({
           message: "feat: merged text overwrite main",
           content: Buffer.from(mergedText).toString("base64"),
           branch: "main",
-          sha: latestCommitSha,
+          sha, // SHA du fichier existant
         }),
       }
     );
@@ -38,10 +40,7 @@ export async function POST(req) {
     for (const branch of branchesToDelete) {
       await fetch(
         `https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/${branch}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { method: "DELETE", headers }
       );
     }
 

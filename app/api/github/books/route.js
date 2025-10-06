@@ -1,23 +1,12 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+
+import { listFiles } from "@/lib/github";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-
-    if (!session?.accessToken) {
-    return new Response(JSON.stringify({ error: "Not authenticated" }), { status: 401 });
+  try {
+    const files = await listFiles("books", "master");
+    const mdFiles = files.filter(f => f.name.endsWith(".md"));
+    return Response.json(mdFiles);
+  } catch (e) {
+    return Response.json({ error: e.message }, { status: 500 });
   }
-
-  const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents?ref=master`,
-    {
-      headers: {
-        Authorization: `token ${session.accessToken}`,
-      },
-    }
-  );
-  const files = await res.json();
-  // On ne garde que les .md
-  const mdFiles = files.filter(f => f.name.endsWith(".md"));
-  return Response.json(mdFiles);
 }
