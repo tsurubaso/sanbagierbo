@@ -21,49 +21,88 @@ export default function Welcome() {
       <div className="w-full max-w-3xl p-8 rounded-lg shadow-md border space-y-16">
         {/* Objectif */}
 
-        <HeroSection direction = "right" duration="3" text="Full Moon" image="/image.jpg" hover >
-        <MotionEffects.GradientText
-    text="🚀 Notre objectif 🚀"
-    className="text-3xl font-bold text-center"
-  />
-        </HeroSection >
+        <HeroSection
+          direction="right"
+          duration="3"
+          text="Full Moon"
+          image="/image.jpg"
+          hover
+        >
+          <MotionEffects.GradientText
+            text="🚀 Notre objectif 🚀"
+            className="text-3xl font-bold text-center"
+          />
+        </HeroSection>
 
-         <SlideIn duration="3" from="left" className="bg-gray-600">
-          <h2 className="text-2xl font-bold">Créer un nouveau médium pour aider la créativité de nos auteurs. Chacun d&apos;eux pourra partager et promouvoir son travail facilement, collaborer et échanger sans complications.</h2>
+        <SlideIn duration="3" from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">
+            Un nouveau médium pour aider la créativité de nos auteurs. Chacun
+            d&apos;eux pourra partager et promouvoir son travail facilement,
+            collaborer et échanger sans complications.
+          </h2>
         </SlideIn>
 
         {/* Lecteur */}
-        <MotionEffects.GradientText
-          text="📖 Lecteur 📖"
-          className="text-2xl font-bold text-center"
-        />
-        <MotionEffects.FadeIn direction="left">
-          <p className="text-center">
-            Simplicité et accès direct au contenu avant tout. Profitez de la lecture sans effort.
-          </p>
-        </MotionEffects.FadeIn>
+        <HeroSection
+          direction="right"
+          duration="3"
+          text="Full Moon"
+          image="/screenShotLecteur.jpg"
+          hover
+        >
+          <MotionEffects.GradientText
+            text="📖 Lecteur 📖"
+            className="text-2xl font-bold text-center"
+          />
+        </HeroSection>
+
+        <SlideIn duration="3" from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">
+            Simplicité et accès direct au contenu avant tout. Profitez de la
+            lecture sans effort.
+          </h2>
+        </SlideIn>
 
         {/* Éditeur */}
-        <MotionEffects.GradientText
-          text="✍️ Éditeur ✍️"
-          className="text-2xl font-bold text-center"
-        />
-        <MotionEffects.FadeIn direction="right">
-          <p className="text-center">
-            Travaillez main dans la main avec vos collaborateurs, partagez et corrigez sans jamais toucher à l’original.
-          </p>
-        </MotionEffects.FadeIn>
+        <HeroSection
+          direction="right"
+          duration="3"
+          text="Full Moon"
+          image="/screenShotEditor.jpg"
+          hover
+        >
+          <MotionEffects.GradientText
+            text="✍️ Éditeur ✍️"
+            className="text-2xl font-bold text-center"
+          />
+        </HeroSection>
+        <SlideIn duration="3" from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">
+            Travaillez main dans la main avec vos collaborateurs, partagez et
+            corrigez sans jamais toucher à l’original.
+          </h2>
+        </SlideIn>
 
         {/* Fusionneur */}
-        <MotionEffects.GradientText
-          text="🔀 Fusionneur 🔀"
-          className="text-2xl font-bold text-center"
-        />
-        <MotionEffects.FadeIn direction="up">
-          <p className="text-center">
-            Pour l’instant sur ordinateur uniquement, cette app permet de relire, comparer et fusionner les corrections pour créer une version finale harmonisée.
-          </p>
-        </MotionEffects.FadeIn>
+        <HeroSection
+          direction="right"
+          duration="3"
+          text="Full Moon"
+          image="/screenShotMerger.jpg"
+          hover
+        >
+          <MotionEffects.GradientText
+            text="🔀 Fusionneur 🔀"
+            className="text-2xl font-bold text-center"
+          />
+        </HeroSection>
+        <SlideIn duration="3" from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">
+            Pour l’instant sur ordinateur uniquement, cette app permet de
+            relire, comparer et fusionner les corrections pour créer une version
+            finale harmonisée.
+          </h2>
+        </SlideIn>
 
         {/* Évolutions futures */}
         <MotionEffects.GradientText
@@ -75,9 +114,11 @@ export default function Welcome() {
           className="text-lg text-center"
         />
 
-
         <div className="p-8 space-y-16">
-          <PulseText text="A New Way to Create" className="text-3xl font-bold" />
+          <PulseText
+            text="A New Way to Create"
+            className="text-3xl font-bold"
+          />
 
           <FadeIn direction="left">
             <p>This text fades in from the left.</p>
@@ -94,7 +135,9 @@ export default function Welcome() {
           />
 
           <HoverZoom>
-            <div className="bg-blue-100 p-4 rounded-lg shadow-md">Hover me!</div>
+            <div className="bg-blue-100 p-4 rounded-lg shadow-md">
+              Hover me!
+            </div>
           </HoverZoom>
         </div>
 
