@@ -28,7 +28,7 @@ export default function Welcome() {
           image="/image.jpg"
           hover
         >
-          <MotionEffects.GradientText
+          <GradientText
             text="🚀 Notre objectif 🚀"
             className="text-3xl font-bold text-center"
           />
@@ -50,7 +50,7 @@ export default function Welcome() {
           image="/screenShotLecteur.jpg"
           hover
         >
-          <MotionEffects.GradientText
+          <GradientText
             text="📖 Lecteur 📖"
             className="text-2xl font-bold text-center"
           />
@@ -71,7 +71,7 @@ export default function Welcome() {
           image="/screenShotEditor.jpg"
           hover
         >
-          <MotionEffects.GradientText
+          <GradientText
             text="✍️ Éditeur ✍️"
             className="text-2xl font-bold text-center"
           />
@@ -91,28 +91,39 @@ export default function Welcome() {
           image="/screenShotMerger.jpg"
           hover
         >
-          <MotionEffects.GradientText
+          <GradientText
             text="🔀 Fusionneur 🔀"
             className="text-2xl font-bold text-center"
           />
         </HeroSection>
         <SlideIn duration="3" from="left" className="bg-gray-600">
           <h2 className="text-2xl font-bold">
-            Pour l’instant sur ordinateur uniquement, cette app permet de
+            Cette partie de l&apos;app permet de
             relire, comparer et fusionner les corrections pour créer une version
             finale harmonisée.
           </h2>
         </SlideIn>
 
         {/* Évolutions futures */}
-        <MotionEffects.GradientText
-          text="🌈 Évolutions futures 🌈"
-          className="text-2xl font-bold text-center"
-        />
-        <MotionEffects.PulseText
-          text="Bientôt : Ajouter images, photos, dessins et modèles 3D, partager sur réseaux sociaux, nouvelles options de collaboration créative."
-          className="text-lg text-center"
-        />
+        <HeroSection
+          direction="right"
+          duration="3"
+          text="Full Moon"
+          image="/image4.jpg"
+          hover
+        >
+          <GradientText
+            text="🌈 Évolutions futures 🌈"
+            className="text-2xl font-bold text-center"
+          />
+        </HeroSection>
+
+       <SlideIn duration="3" from="left" className="bg-gray-600">
+          <h2 className="text-2xl font-bold">
+            Bientôt : Ajouter images, photos, dessins et modèles 3D, partager sur réseaux sociaux, nouvelles options de collaboration créative.
+          </h2>
+        </SlideIn>
+
 
         <div className="p-8 space-y-16">
           <PulseText
