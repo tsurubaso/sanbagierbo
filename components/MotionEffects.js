@@ -120,7 +120,7 @@ const ScrollShiftSection = () => {
   );
 };
 
-const ScrollColorSection = () => {
+const ScrollColorSection = ({text="Colorful Scroll ✨"}) => {
   const colorRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: colorRef,
@@ -134,6 +134,9 @@ const ScrollColorSection = () => {
     ["#ffffff", "#000000"]
   );
 
+    // ✅ S'assure que `text` est toujours une string
+  const displayText = typeof text === "object" ? text.text || "" : text;
+
   return (
     <motion.section
       ref={colorRef}
@@ -141,7 +144,7 @@ const ScrollColorSection = () => {
       className="flex min-h-[500px] items-center justify-center"
     >
       <motion.h1 style={{ color: textColor }} className="text-5xl font-bold">
-        Colorful Scroll ✨
+        {displayText}
       </motion.h1>
     </motion.section>
   );
