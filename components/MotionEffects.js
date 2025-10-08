@@ -83,6 +83,7 @@ const AnimatedText = ({
     <motion.span
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
+      viewport={{ once: true, amount: 0.6 }} // déclenche une seule fois à 30% visible
       transition={{ duration, ease }}
       className={`inline-block overflow-hidden whitespace-nowrap ${className}`}
     >
@@ -91,7 +92,7 @@ const AnimatedText = ({
   );
 };
 
-const ScrollShiftSection = () => {
+const ScrollShiftSection = ({text="Colorful Scroll ✨"}) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -103,18 +104,19 @@ const ScrollShiftSection = () => {
     [0, 0.5, 1],
     ["-50px", "0px", "50px"]
   );
-
+   // ✅ S'assure que `text` est toujours une string
+  const displayText = typeof text === "object" ? text.text || "" : text;
   return (
     <section
       ref={ref}
-      className="min-h-[500px] flex items-center justify-center bg-gray-100"
+      className="min-h-[300px] flex items-center justify-center bg-gray-500"
     >
       <motion.div
         viewport={{ amount: 0.3, once: false }}
         style={{ x }}
-        className="p-10 bg-white shadow-xl rounded-xl text-xl font-bold"
+        className="p-10 bg-gray  rounded-xl text-2xl font-bold"
       >
-        I move slightly left and right when you scroll 🚀
+         {displayText}
       </motion.div>
     </section>
   );
@@ -178,7 +180,7 @@ const HeroSection = ({
 
   return (
     <motion.div
-      className={`relative w-full h-64 md:h-96 lg:h-[500px] cursor-pointer overflow-hidden rounded-${rounded}`}
+      className={`relative w-full h-64 md:h-96 lg:h-[500px] cursor-default overflow-hidden rounded-${rounded}`}
       initial={{ x: initialX, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration, ease: "easeOut" }}

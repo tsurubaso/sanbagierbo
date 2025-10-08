@@ -1,12 +1,14 @@
-"use client";
-import { SessionProvider } from "next-auth/react";
-import ThemeToggle from "@/components/ThemeToggle";
-
+import ClientWrapper from "@/components/ClientWrapper";
 import "./globals.css";
+
+export const metadata = {
+  title: "SanBagierBo",
+  description: "Why a book when you can App",
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html lang="fr">
       <body
         style={{
           backgroundColor: "var(--background)",
@@ -14,11 +16,7 @@ export default function RootLayout({ children }) {
           borderColor: "#444",
         }}
       >
-        <SessionProvider>
-          {/* Toggle client pour le thème */}
-          <ThemeToggle />
-          {children}
-        </SessionProvider>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );
