@@ -3,6 +3,12 @@ import MotionEffects from "@/components/MotionEffects";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+
+
+
+
+
+
 const {
   PulseText,
   FadeIn,
@@ -151,7 +157,7 @@ export default function Welcome() {
 De grands auteurs, de grandes aventures.
 Mais à quoi sert une histoire sans illustration ?
 
-Pense à Jules Verne sans Édouard Riou, Alphonse de Neuville, Léon Benett et Jules Férat.
+Pensez à Jules Verne sans Édouard Riou, Alphonse de Neuville, Léon Benett et Jules Férat.
 Ou encore Émile-Antoine Bayard !
 
 Oui, vous voyez, dans votre esprit — et pour des générations — ces histoires ont toujours été illustrées.
@@ -169,7 +175,7 @@ Pour Jules, c’était Pierre-Jules Hetzel."
           text="
         L’objectif est de promouvoir, et à terme, de rémunérer les créateurs :
 Illustrateurs, Graphistes, Peintres, Photographes, Artistes 3D... c’est open bar !
-Mais tout rest à faire, et à tous les niveaux...Mais Parbleu que c'est amusant de faire ce qu'on aime.
+Mais tout reste à faire, et à tous les niveaux...Mais Parbleu que c'est amusant de faire ce qu'on aime.
 Pour ce que l'on aime, pour ceux que l'on aime."
         />
 
