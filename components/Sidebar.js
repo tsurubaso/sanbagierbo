@@ -1,20 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const navItems = [
-  { href: "/", label: "🏠 Home" },
-  { href: "/rulebook", label: "📜 Rulebook" },
-  { href: "/storylist", label: "📚 Storylist" },
-  { href: "/draftlist", label: "📝 Draftlist" },
-  { href: "/fragmentlist", label: "✂️ Fragmentlist" },
-  { href: "/otherlist", label: "🗂️ Otherlist" },
-  
-];
 
-export default function Sidebar() {
+export default function Sidebar({ navItems }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(true);
 
@@ -54,7 +46,13 @@ export default function Sidebar() {
 
             {/* Titre avec favicon */}
             <div className="flex items-center gap-2 mb-6">
-              <img src="/favicon.ico" alt="Logo" className="w-6 h-6" />
+              <Image
+                src="/favicon.ico"
+                alt="Logo"
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
               <h2 className="text-2xl font-bold">SanSuBagier</h2>
             </div>
 

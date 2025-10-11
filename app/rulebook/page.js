@@ -45,7 +45,9 @@ export default function RulePage() {
 
         <hr className="my-8 border-gray-500" />
 
-        <h2 className="text-2xl font-bold mb-4">📂 Répartition des histoires</h2>
+        <h2 className="text-2xl font-bold mb-4">
+          📂 Répartition des histoires
+        </h2>
         <ul className="list-disc list-inside text-lg mb-6 space-y-2">
           <li>
             <strong>Brouillons 📝</strong> — Histoires fraîchement ajoutées,
@@ -54,8 +56,7 @@ export default function RulePage() {
           </li>
           <li>
             <strong>Fragments ✂️</strong> — Parties incomplètes ou extraits,
-            parfois placés ici avant de rejoindre la section{" "}
-            <em>histoires</em>.
+            parfois placés ici avant de rejoindre la section <em>histoires</em>.
           </li>
           <li>
             <strong>Histoires 📚</strong> — Les œuvres terminées, ou du moins ce
@@ -64,6 +65,11 @@ export default function RulePage() {
           <li>
             <strong>Autres 🗂️</strong> — Textes anciens. Parce que les vieilles
             choses sont aussi agréables à lire.
+          </li>
+          <li>
+            <strong>Illustrations 🎨</strong> —{" "}
+            <span className="text-red-500">Inactive now. </span>
+            D’Illustration en Illustrations, entrez par les images dans l&apos;histoire, passez par le carrousel...
           </li>
         </ul>
 

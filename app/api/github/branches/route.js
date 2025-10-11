@@ -1,10 +1,18 @@
+
+// app/api/github/branches/route.js
 import {listBranches } from "@/lib/github";
 
 export async function GET() {
   try {
-    const branches  = await listBranches();
-    return Response.json(branches.map(b => b.name));
+    const branches = await listBranches();
+    return new Response(JSON.stringify(branches), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (e) {
-    return Response.json({ error: e.message }, { status: 500 });
+    return new Response(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
