@@ -1,7 +1,5 @@
 // app/page.js
 "use client";
-import PackageInfo from "@/components/PackageInfo";
-import GitHubAuth from "@/components/GitHubAuth";
 import BooksSidebar from "@/components/BooksListAndVersionOnGit";
 import BookEditor from "@/components/BookEditor";
 import { useState } from "react";
@@ -23,12 +21,6 @@ export default function Page() {
       </div>
       {/* Main content area */}
       <div className="flex-1 flex flex-col p-6 gap-6">
-        <PackageInfo />
-
-        <div className="flex flex-col items-center gap-6">
-          <h1 className="text-3xl font-bold">Connection to GitHub</h1>
-          <GitHubAuth />
-        </div>
          <div className="flex">
    
 
