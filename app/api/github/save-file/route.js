@@ -3,15 +3,17 @@
 import { saveFile } from "@/lib/github";
 
 export async function POST(req) {
-  const session = await getServerSession(authOptions);
-  if (!session?.accessToken) return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
-
-  const { book, content, branch } = await req.json();
-
   try {
-    const result = await saveFile(book, content, branch, `Update ${book}`, session.accessToken);
-    return new Response(JSON.stringify(result), { status: 200 });
+    const { book, content, branch } = await req.json();
+    const result = await saveFile(book, content, branch);
+    return new Response(JSON.stringify(result), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (e) {
-    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
+    return new Response(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
