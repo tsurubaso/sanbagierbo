@@ -1,5 +1,5 @@
 // app/api/github/get-file/route.js
-import { getFileContent } from "@/lib/github";
+import { getFile } from "@/lib/github";
 
 export async function GET(req) {
   try {
@@ -9,10 +9,16 @@ export async function GET(req) {
 
     if (!book) return new Response(JSON.stringify({ error: "Book is required" }), { status: 400 });
 
-    const content = await getFileContent(book, branch);
+    const content = await getFile(book, branch);
+    //console.log(content)
 
     return new Response(JSON.stringify({ content }), { status: 200 });
   } catch (e) {
-    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
+    console.error("❌ get-file error:", e);
+    // send the message to the browser to debug
+    return new Response(
+      JSON.stringify({ error: e.message || e.toString() }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }

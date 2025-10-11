@@ -11,15 +11,11 @@ export default function BookEditor({ book, branch, onSaved }) {
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/github/file?book=${book}&branch=${branch}`
+          `/api/github/get-file?book=${book}&branch=${branch}`
         );
         if (!res.ok) throw new Error("Failed to fetch file");
         const data = await res.json();
-        // ✅ décodage correct UTF-8
-        const decoded = new TextDecoder("utf-8").decode(
-          Uint8Array.from(atob(data.content), (c) => c.charCodeAt(0))
-        );
-        setContent(decoded);
+        setContent(data.content);
       } catch (err) {
         console.error(err);
       } finally {
