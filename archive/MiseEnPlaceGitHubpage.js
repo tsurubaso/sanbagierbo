@@ -1,7 +1,7 @@
 // app/page.js
 "use client";
 import BooksSidebar from "@/components/BooksListAndVersionOnGit";
-import BookEditor from "@/components/BookEditor";
+import BookEditor from "@/archive/components/BookEditor";
 import { useState } from "react";
 
 export default function Page() {
