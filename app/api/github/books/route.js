@@ -1,19 +1,16 @@
 // app/api/github/books/route.js
-import { listFiles } from "@/lib/github";
+import { listStoriesFromGitHub } from "@/lib/github";
 
-export async function GET() {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const status = searchParams.get("status") || "story";
+
   try {
-    const files = await listFiles("", "master");
-    const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith(".md")) : [];
-    return new Response(JSON.stringify(mdFiles), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (e) {
-    console.error("GitHub books API error:", e.message);
-    return new Response(JSON.stringify([]), {  // <-- return empty array on error
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    const stories = await listStoriesFromGitHub("master");
+    const filtered = stories.filter((s) => s.status === status);
+    return Response.json(filtered, { status: 200 });
+  } catch (err) {
+    console.error("Erreur dans /api/github/books :", err);
+    return Response.json({ error: err.message }, { status: 500 });
   }
 }

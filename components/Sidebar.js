@@ -53,7 +53,7 @@ export default function Sidebar({ navItems }) {
                 height={24}
                 className="w-6 h-6"
               />
-              <h2 className="text-2xl font-bold">SanSuBagier</h2>
+              <h2 className="text-2xl font-bold">SanBaGierBo</h2>
             </div>
 
             {/* Menu de navigation */}
