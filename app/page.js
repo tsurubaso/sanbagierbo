@@ -31,7 +31,7 @@ export default function Welcome() {
   return (
 <main className="flex min-h-screen items-center justify-center py-2 px-4"
       style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}>
-  <div className="w-full max-w-4xl p-8 rounded-lg shadow-md border">
+  <div className="w-full max-w-4xl p-8 rounded-lg shadow-md border space-y-10">
         {/* Objectif */}
 
         <HeroSection
