@@ -6,11 +6,11 @@ export default function Page({ params }) {
   const { link, secret } = use(params);
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1 }}>
+    <div >
+      <div>
         <SecretEditor link={link} secret={secret} />
       </div>
-      <div style={{ width: 300 }}>
+      <div >
         <SidebarRight />
       </div>
     </div>

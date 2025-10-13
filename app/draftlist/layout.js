@@ -11,10 +11,10 @@ const navItems = [
 ];
 export default function SubLayout({ children }) {
   return (
-    <div className="flex min-h-screen">
+    <div>
       <Sidebar navItems={navItems} />
-      <div className="ml-64 flex flex-col">
-        <main className="flex-1">{children}</main>
+      <div >
+        <main>{children}</main>
         <Footer />
       </div>
     </div>

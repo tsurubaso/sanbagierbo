@@ -69,6 +69,7 @@ useEffect(() => {
       <div style={{ flex: 1 }}>
         <Editor
           height="100%"
+          width="100%"
           defaultLanguage="markdown"
           value={content}
           onChange={(value) => setContent(value)}
