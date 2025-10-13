@@ -10,11 +10,11 @@ import Image from "next/image";
 
 
 const {
-  PulseText,
-  FadeIn,
+  //PulseText,
+  //FadeIn,
   GradientText,
-  TypingText,
-  HoverZoom,
+  //TypingText,
+  //HoverZoom,
   HeroSection,
   ScrollColorSection,
   ScrollShiftSection,
@@ -25,7 +25,7 @@ const {
 export default function Welcome() {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/rulebook"); // 👈 chemin de destination
+    router.push("/page1Rulebook"); // 👈 chemin de destination
   };
 
   return (
