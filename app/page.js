@@ -25,16 +25,13 @@ const {
 export default function Welcome() {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/page1Rulebook"); // 👈 chemin de destination
+    router.push("/page2Rulebook"); // 👈 chemin de destination
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center py-2 px-8">
-      <div className="w-full max-w-3xl p-8 rounded-lg shadow-md border space-y-16">
-        <GradientText
-          text="Welcome to SanBagierBo"
-          className="text-4xl font-bold"
-        />
+<main className="flex min-h-screen items-center justify-center py-2 px-4"
+      style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}>
+  <div className="w-full max-w-4xl p-8 rounded-lg shadow-md border">
         {/* Objectif */}
 
         <HeroSection
