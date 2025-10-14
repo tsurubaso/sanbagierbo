@@ -8,11 +8,16 @@
   --border-color: #333;
 }
 
+/* Global styles */
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 /* For Cards or divs that contain text */

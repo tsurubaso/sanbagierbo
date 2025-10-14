@@ -53,7 +53,6 @@ export default function RootLayout({ children }) {
         style={{
           backgroundColor: "var(--background)",
           color: "var(--foreground)",
-          borderColor: "#444",
         }}
       >
         <ClientWrapper>{children}</ClientWrapper>
