@@ -1,4 +1,4 @@
-import ClientWrapper from "@/components/ClientWrapper";
+
 import "./globals.css";
 
 export const metadata = {
@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
           color: "var(--foreground)",
         }}
       >
-        <ClientWrapper>{children}</ClientWrapper>
+        {children}
       </body>
     </html>
   );

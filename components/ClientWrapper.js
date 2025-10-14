@@ -8,16 +8,13 @@ import RightSidebar from "./RightSidebar";
 import TopBar from "./TopBar";
 import Footer from "./Footer";
 
-  /*const navItemsTop = [
-  { href: "/reader", label: " Reader" },
-  { href: "/writer", label: " Writer" },
-  { href: "/merger", label: " Merger" },
-];*/
-const navItemsTop = []; // Pas de boutons pour l'instant
+
 
 export default function ClientWrapper({ 
     children,
- navItemsTop , // Pas de boutons pour l'instant
+ navItemsTop = [
+
+], // Pas de boutons pour l'instant
  navItems = [
   { href: "/", label: "🏠 Home" },
   { href: "/page2Rulebook", label: "📜 Les Règles" },
