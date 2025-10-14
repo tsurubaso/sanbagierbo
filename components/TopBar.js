@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
+
 export default function TopBar({ onToggleLeft, onToggleRight, navItems = [] }) {
   const [visible, setVisible] = useState(false);
 

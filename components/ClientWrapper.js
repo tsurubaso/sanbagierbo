@@ -8,18 +8,35 @@ import RightSidebar from "./RightSidebar";
 import TopBar from "./TopBar";
 import Footer from "./Footer";
 
-export default function ClientWrapper({ children }) {
-  const [showLeft, setShowLeft] = useState(true);
-  const [showRight, setShowRight] = useState(true);
-  const [showTop, setShowTop] = useState(true);
-  const [showFooter, setShowFooter] = useState(true);
-
   /*const navItemsTop = [
   { href: "/reader", label: " Reader" },
   { href: "/writer", label: " Writer" },
   { href: "/merger", label: " Merger" },
 ];*/
-  const navItemsTop = []; // Pas de boutons pour l'instant
+const navItemsTop = []; // Pas de boutons pour l'instant
+
+export default function ClientWrapper({ 
+    children,
+ navItemsTop , // Pas de boutons pour l'instant
+ navItems = [
+  { href: "/", label: "🏠 Home" },
+  { href: "/page2Rulebook", label: "📜 Les Règles" },
+  { href: "/storylist", label: "📚 Histoires" },
+  { href: "/draftlist", label: "📝 Brouillons" },
+  { href: "/fragmentlist", label: "✂️ Fragments" },
+  { href: "/otherlist", label: "🗂️ Autres" },
+  { href: "/illustrationlist", label: "🎨 Illustrations" },
+]
+
+
+
+
+ }) {
+  const [showLeft, setShowLeft] = useState(true);
+  const [showRight, setShowRight] = useState(true);
+  const [showTop, setShowTop] = useState(true);
+  const [showFooter, setShowFooter] = useState(true);
+
 
   return (
     <SessionProvider>
@@ -34,7 +51,7 @@ export default function ClientWrapper({ children }) {
         )}
 
         <div className="flex flex-1">
-          {showLeft && <LeftSidebar />}
+          {showLeft && <LeftSidebar navItems={navItems} />}
           <main className="flex-1 p-4">{children}</main>
           {showRight && <RightSidebar />}
         </div>
