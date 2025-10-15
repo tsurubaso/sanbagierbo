@@ -15,7 +15,14 @@ export default function ClientWrapper({
  navItemsTop = [
 
 ], // Pas de boutons pour l'instant
- navItems = [
+
+ }) {
+  const [showLeft, setShowLeft] = useState(true);
+  const [showRight, setShowRight] = useState(true);
+  const [showTop, setShowTop] = useState(true);
+  const [showFooter, setShowFooter] = useState(true);
+
+  const navItems = [
   { href: "/", label: "🏠 Home" },
   { href: "/page2Rulebook", label: "📜 Les Règles" },
   { href: "/storylist", label: "📚 Histoires" },
@@ -24,15 +31,6 @@ export default function ClientWrapper({
   { href: "/otherlist", label: "🗂️ Autres" },
   { href: "/illustrationlist", label: "🎨 Illustrations" },
 ]
-
-
-
-
- }) {
-  const [showLeft, setShowLeft] = useState(true);
-  const [showRight, setShowRight] = useState(true);
-  const [showTop, setShowTop] = useState(true);
-  const [showFooter, setShowFooter] = useState(true);
 
 
   return (

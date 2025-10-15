@@ -1,4 +1,4 @@
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/archive/components/Sidebar";
 import Footer from "@/components/Footer";
 
 const navItems = [
