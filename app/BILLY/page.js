@@ -1,6 +1,6 @@
 "use client";
 
-export default function page2Rulebook() {
+export default function Rules() {
   return (
 <main className="min-h-screen py-2"
       style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}>

@@ -15,6 +15,8 @@ export default function ClientWrapper({
  navItemsTop = [
 
 ], // Pas de boutons pour l'instant
+  rightSidebarContent = null,
+  rightSidebarDescription = null,
 
  }) {
   const [showLeft, setShowLeft] = useState(true);
@@ -24,7 +26,7 @@ export default function ClientWrapper({
 
   const navItems = [
   { href: "/", label: "🏠 Home" },
-  { href: "/page2Rulebook", label: "📜 Les Règles" },
+  { href: "/Rules", label: "📜 Les Règles" },
   { href: "/storylist", label: "📚 Histoires" },
   { href: "/draftlist", label: "📝 Brouillons" },
   { href: "/fragmentlist", label: "✂️ Fragments" },
@@ -45,10 +47,15 @@ export default function ClientWrapper({
           />
         )}
 
-        <div className="flex flex-1">
+        <div className="flex flex-1 min-h-0">
           {showLeft && <LeftSidebar navItems={navItems} />}
-          <main className="flex-1 p-4">{children}</main>
-          {showRight && <RightSidebar />}
+          <main className="flex-1 p-4 overflow-y-auto">{children}</main>
+          {showRight && (
+            <RightSidebar
+              description={rightSidebarDescription}
+              content={rightSidebarContent}
+            />
+          )}
         </div>
 
         {showFooter && <Footer />}

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export default function LeftSidebar({ navItems = [] }) {
     const pathname = usePathname();
   return (
-    <aside className="w-64 h-screen bg-black text-white transition-all duration-700 p-4 border-r">
+    <aside className="w-64 bg-black text-white transition-all duration-700 p-4 border-r flex flex-col justify-between">
       <nav className="space-y-2">
             {/* Titre avec favicon */}
             <div className="flex items-center gap-2 mb-6">

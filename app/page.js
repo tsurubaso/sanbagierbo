@@ -25,7 +25,7 @@ const {
 export default function Welcome() {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/page2Rulebook"); // 👈 chemin de destination
+    router.push("/Rules"); // 👈 chemin de destination
   };
 
   return (
