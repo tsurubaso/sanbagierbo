@@ -52,7 +52,7 @@ export default function StoriesGrid({
             {filteredStories.map((story) => (
               <Link
                 key={story.id}
-                href={`/${basePath}/${status}list/${story.link}`}
+                href={`/${basePath}/${status}list/${story.link}/reader`}
                 passHref
               >
                 <div

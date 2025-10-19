@@ -1,3 +1,8 @@
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//old structure keep for info, will be destroyed
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 "use client";
 import { useState } from "react";
 

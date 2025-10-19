@@ -17,6 +17,11 @@ export default function BillyLayout({ children }) {
   const isReader = pathname.includes("/reader");
   const isEditor = pathname.includes("/editor");
   const isMerger = pathname.includes("/merger");
+  const navItemsTop = [
+  { href: "/reader", label: "📖 Reader" },
+  { href: "/editor", label: "✏️ Editor" },
+  { href: "/merger", label: "🧩 Merger" },
+];
 
   return (
     <>
@@ -24,6 +29,8 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
+            rightSidebarContent={<GithubSidebar />}
+            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
             showRightDefault={false} // désactive la barre droite
           >
             {children}
@@ -34,6 +41,8 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
+            rightSidebarContent={<GithubSidebar />}
+            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
             showRightDefault={false} // désactive la barre droite
           >
             {children}
@@ -44,6 +53,8 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
+            rightSidebarContent={<GithubSidebar />}
+            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
             showRightDefault={false} // désactive la barre droite
           >
             {children}
@@ -54,6 +65,8 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
+            rightSidebarContent={<GithubSidebar />}
+            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
             showRightDefault={false} // désactive la barre droite
           >
             {children}
@@ -64,6 +77,8 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
+            rightSidebarContent={<GithubSidebar />}
+            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
             showRightDefault={false} // désactive la barre droite
           >
             {children}

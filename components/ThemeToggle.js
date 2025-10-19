@@ -12,7 +12,7 @@ export default function ThemeToggle() {
       root.style.setProperty("--card-background", "#1a1a1a");
       root.style.setProperty("--border-color", "#333");
     } else {
-      root.style.setProperty("--background", "#d3b2e2ff");
+      root.style.setProperty("--background", "#c4c4c4ff");
       root.style.setProperty("--foreground", "#222222");
       root.style.setProperty("--card-background", "#f4f4f4");
       root.style.setProperty("--border-color", "#ccc");
