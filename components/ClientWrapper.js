@@ -8,32 +8,27 @@ import RightSidebar from "./RightSidebar";
 import TopBar from "./TopBar";
 import Footer from "./Footer";
 
-
-
-export default function ClientWrapper({ 
-    children,
- navItemsTop = [
-
-], // Pas de boutons pour l'instant
+export default function ClientWrapper({
+  children,
+  navItemsTop = [], // Pas de boutons pour l'instant
   rightSidebarContent = null,
   rightSidebarDescription = null,
-
- }) {
+  showRightDefault = true, // 
+}) {
   const [showLeft, setShowLeft] = useState(true);
-  const [showRight, setShowRight] = useState(true);
+  const [showRight, setShowRight] = useState(showRightDefault);
   const [showTop, setShowTop] = useState(true);
   const [showFooter, setShowFooter] = useState(true);
 
   const navItems = [
-  { href: "/", label: "🏠 Home" },
-  { href: "/Rules", label: "📜 Les Règles" },
-  { href: "/storylist", label: "📚 Histoires" },
-  { href: "/draftlist", label: "📝 Brouillons" },
-  { href: "/fragmentlist", label: "✂️ Fragments" },
-  { href: "/otherlist", label: "🗂️ Autres" },
-  { href: "/illustrationlist", label: "🎨 Illustrations" },
-]
-
+    { href: "/", label: "🏠 Home" },
+    { href: "/Rules", label: "📜 Les Règles" },
+    { href: "/BILLY/storylist", label: "📚 Histoires" },
+    { href: "/BILLY/draftlist", label: "📝 Brouillons" },
+    { href: "/BILLY/fragmentlist", label: "✂️ Fragments" },
+    { href: "/BILLY/otherlist", label: "🗂️ Autres" },
+    { href: "/BILLY/illustrationlist", label: "🎨 Illustrations" },
+  ];
 
   return (
     <SessionProvider>

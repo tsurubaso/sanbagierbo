@@ -1,6 +1,6 @@
 export default function RightSidebar({ description, content }) {
   return (
-    <aside className="w-64 bg-black text-white transition-all duration-700 p-4 border-r flex flex-col justify-between">
+    <aside className="w-64 bg-black text-white transition-all duration-700 p-4 border-l flex flex-col justify-between">
       <nav className="space-y-4">
         <h2 className="font-semibold mb-2">Infos</h2>{" "}
         {/* Description dynamique */}
