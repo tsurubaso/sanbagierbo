@@ -24,73 +24,47 @@ export default function BillyLayout({ children }) {
         <>
           <ClientWrapper
             navItemsTop
-            rightSidebarContent={<GithubSidebar />}
-            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
-             showRightDefault={false} // désactive la barre droite
+            showRightDefault={false} // désactive la barre droite
           >
             {children}
           </ClientWrapper>
         </>
       )}
-
       {isFragment && (
         <>
-          <aside className="w-64 bg-gray-100 border-r p-4">
-            <p>📁 Fragment navigation</p>
-          </aside>
-
           <ClientWrapper
             navItemsTop
-            rightSidebarContent={<GithubSidebar />}
-            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
+            showRightDefault={false} // désactive la barre droite
           >
             {children}
           </ClientWrapper>
         </>
       )}
-
       {isIllustration && (
         <>
-          <aside className="w-64 bg-gray-100 border-r p-4">
-            <p>📁 Illustration navigation</p>
-          </aside>
-
           <ClientWrapper
             navItemsTop
-            rightSidebarContent={<GithubSidebar />}
-            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
+            showRightDefault={false} // désactive la barre droite
           >
             {children}
           </ClientWrapper>
         </>
       )}
-
       {isOther && (
         <>
-          <aside className="w-64 bg-gray-100 border-r p-4">
-            <p>📁 Other navigation</p>
-          </aside>
-
           <ClientWrapper
             navItemsTop
-            rightSidebarContent={<GithubSidebar />}
-            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
+            showRightDefault={false} // désactive la barre droite
           >
             {children}
           </ClientWrapper>
         </>
       )}
-
       {isStory && (
         <>
-          <aside className="w-64 bg-gray-100 border-r p-4">
-            <p>📁 Story navigation</p>
-          </aside>
-
           <ClientWrapper
             navItemsTop
-            rightSidebarContent={<GithubSidebar />}
-            rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
+            showRightDefault={false} // désactive la barre droite
           >
             {children}
           </ClientWrapper>

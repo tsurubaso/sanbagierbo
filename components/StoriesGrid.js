@@ -6,6 +6,7 @@ import SearchBar from "@/components/SearchBar";
 export default function StoriesGrid({
   jsonUrl = "/stories.json",
   status = "fragment",
+  basePath = "BILLY",
   textDePresentation = "Fragments of stories or between story and draft",
 }) {
   const [stories, setStories] = useState([]);
@@ -51,7 +52,7 @@ export default function StoriesGrid({
             {filteredStories.map((story) => (
               <Link
                 key={story.id}
-                href={`/${status}list/${story.link}`}
+                href={`/${basePath}/${status}list/${story.link}`}
                 passHref
               >
                 <div

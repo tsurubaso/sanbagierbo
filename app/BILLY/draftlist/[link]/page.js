@@ -1,4 +1,4 @@
-// app/draftlist/[link]/page.js
+// app/BILLY/draftlist/[link]/page.js
 import MarkdownLoader from "@/components/MarkdownLoader";
 
 export default function BookPage({ params }) {
