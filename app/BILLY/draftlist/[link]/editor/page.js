@@ -54,15 +54,29 @@ export default function BookEditorPage({ params, searchParams }) {
 
   // Save file
   async function saveFile() {
-    setStatus("Saving...");
+
+        if (currentBranch === "master") {
+      setStatus("❌ Saving on 'master' is disabled. Please use v2 or v3.");
+      return;
+    }
+
+
+   setStatus(`Saving on ${currentBranch}...`);
     try {
+      // ensure the branch exists before saving
+      await fetch("/api/github/ensure-branch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ branch: currentBranch }),
+      });
+
       const res = await fetch("/api/github/save-file", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ book, branch: currentBranch, content }),
       });
       if (!res.ok) throw new Error("Failed to save file");
-      setStatus("✅ File saved successfully!");
+      setStatus(`✅ File saved successfully on ${currentBranch}!`);
     } catch (err) {
       setStatus("❌ " + err.message);
     } finally {
@@ -100,21 +114,32 @@ export default function BookEditorPage({ params, searchParams }) {
         <h1 className="text-lg font-bold">
           ✏️ Editing: {book}.md ({currentBranch})
         </h1>
-        <div className="flex gap-4">
-          <select
-            className="bg-black text-white border border-gray-500 rounded p-1"
-            value={currentBranch}
-            onChange={(e) => setCurrentBranch(e.target.value)}
-          >
-            {branches.map((b) => (
-              <option key={b}>{b}</option>
-            ))}
-          </select>
+        <div className="flex gap-4 items-center">
+          <div className="flex flex-col">
+            <label className="text-xs text-gray-400 mb-1">Save on:</label>
+            <select
+              className="bg-black text-white border border-gray-500 rounded p-1"
+              value={currentBranch}
+              onChange={(e) => setCurrentBranch(e.target.value)}
+            >
+              {branches.map((b) => (
+                <option key={b}>{b}</option>
+              ))}
+              {!branches.includes("v2") && <option value="v2">v2</option>}
+              {!branches.includes("v3") && <option value="v3">v3</option>}
+            </select>
+          </div>
+
           <button
             onClick={saveFile}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
+            disabled={currentBranch === "master"}
+            className={`px-3 py-1 rounded ${
+              currentBranch === "master"
+                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
+            }`}
           >
-            Save
+            💾 Save
           </button>
         </div>
       </header>
@@ -169,6 +194,12 @@ export default function BookEditorPage({ params, searchParams }) {
         {status && (
           <p className="text-sm text-gray-400 mt-2 border-t border-gray-700 pt-2">
             {status}
+          </p>
+        )}
+
+        {currentBranch === "master" && (
+          <p className="text-xs text-red-400 italic">
+            ⚠️ Saving is disabled on master. Please switch to v2 or v3.
           </p>
         )}
       </footer>
