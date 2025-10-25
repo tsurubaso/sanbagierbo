@@ -4,9 +4,8 @@ import Editor from "@monaco-editor/react";
 import LanguageToolResult from "@/components/LanguageToolResult";
 
 export default function BookEditorPage({ params, searchParams }) {
-  
   const book = use(params).link;
- const branch = use(searchParams)?.branch || "master";
+  const branch = use(searchParams)?.branch || "master";
 
   const [content, setContent] = useState("");
   const [status, setStatus] = useState("");
@@ -126,7 +125,15 @@ export default function BookEditorPage({ params, searchParams }) {
           defaultLanguage="markdown"
           value={content}
           onChange={(v) => setContent(v)}
-          onMount={(editor) => (editorRef.current = editor)}
+          onMount={(editor) => {
+            editorRef.current = editor;
+            editor.onDidChangeCursorSelection(() => {
+              const selection = editor
+                .getModel()
+                ?.getValueInRange(editor.getSelection());
+              setSelectedText(selection || "");
+            });
+          }}
           onMouseUp={handleEditorSelection}
           onKeyUp={handleEditorSelection}
           options={{
