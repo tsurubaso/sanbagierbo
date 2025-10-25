@@ -1,7 +1,8 @@
 "use client";
 
 import ClientWrapper from "@/components/ClientWrapper";
-import DictionarySidebar from "@/components/DicoSimplePourSidebare";
+import DictionarySidebarSimple from "@/components/DicoSimplePourSidebare";
+import DictionarySidebarFull from "@/components/DicoCompletPourSidebare";
 import GithubSidebar from "@/components/GitHubSideBar";
 import { usePathname } from "next/navigation";
 
@@ -35,7 +36,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         //rightSidebarDescription={<p>🧾 Mode Lecture</p>}
-        rightSidebarContent={<DictionarySidebar />}
+        rightSidebarContent={<DictionarySidebarSimple />}
         showRightDefault={true}
       >
         {children}
@@ -47,9 +48,8 @@ export default function BillyLayout({ children }) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
-        rightSidebarContent={<p>✍️ Mode Édition</p>}
-        rightSidebarDescription={<p>Modification du contenu</p>}
-        showRightDefault
+        rightSidebarContent={<DictionarySidebarFull/>}
+        showRightDefault={true}
       >
         {children}
       </ClientWrapper>

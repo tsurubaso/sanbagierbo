@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function DictionarySidebar() {
+export default function DictionarySidebarFull() {
   const [word, setWord] = useState("");
   const [result, setResult] = useState(null);
   const LABELS_FR = {
@@ -63,7 +63,7 @@ export default function DictionarySidebar() {
       </div>
 
       {/* Résultats */}
-      <div className="text-left mt-3 max-h-[30vh] overflow-y-auto text-sm">
+      <div className="text-left mt-3 overflow-y-auto text-sm">
         {result && result.type === "dictionary" && Array.isArray(result.data) && (
           result.data.map((entry, idx) => (
             <div key={idx} className="mb-3">

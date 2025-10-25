@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function DictionarySidebar() {
+export default function DictionarySidebarSimple() {
   const [word, setWord] = useState("");
   const [result, setResult] = useState(null);
 
