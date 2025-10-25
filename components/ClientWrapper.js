@@ -11,8 +11,8 @@ import Footer from "./Footer";
 export default function ClientWrapper({
   children,
   navItemsTop = [], // Pas de boutons pour l'instant
-  rightSidebarContent = null,
   rightSidebarDescription = null,
+  rightSidebarContent = null,
   showRightDefault = true, // 
 }) {
   const [showLeft, setShowLeft] = useState(true);

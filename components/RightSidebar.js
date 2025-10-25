@@ -4,7 +4,7 @@ export default function RightSidebar({ description, content }) {
       <nav className="space-y-4">
         {/* Description dynamique */}
         <div className="text-sm text-gray-300">
-          {description || "Zone pour afficher des détails, stats, ou options."}
+          {description || ""}
         </div>
         {/* Contenu additionnel */}
         <div className="mt-6 pt-4">{content}</div>

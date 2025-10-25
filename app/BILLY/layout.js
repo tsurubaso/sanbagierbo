@@ -34,7 +34,7 @@ export default function BillyLayout({ children }) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
-        rightSidebarDescription={<>📖 Mode Lecture</>}
+        //rightSidebarDescription={<p>🧾 Mode Lecture</p>}
         rightSidebarContent={<DictionarySidebar />}
         showRightDefault={true}
       >
@@ -75,7 +75,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        rightSidebarDescription={<p>🧾 Liste de brouillons</p>}
+        //rightSidebarDescription={<p>🧾 Liste de brouillons</p>}
         showRightDefault={false}
       >
         {children}

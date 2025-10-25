@@ -13,7 +13,7 @@ export default function DictionarySidebar() {
   };
 
   return (
-    <div className="mt-auto border-t border-gray-700 pt-4 text-center space-y-4">
+    <div className="mt-auto pt-4 text-center space-y-4">
       <h2 className="text-xl font-semibold">Dico FR</h2>
 
       {/* Input */}
