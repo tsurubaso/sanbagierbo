@@ -1,30 +1,111 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import InteractiveMerge from "@/components/InteractiveMerge";
 
 export default function MergerPage({ params }) {
-  const { status, slug } = params; // e.g., status = "draftlist", slug = "ArmeSecreteBD"
-  const [mergedContent, setMergedContent] = useState(null);
+  const unwrappedParams = use(params); // unwrap the params
+  const { link } = unwrappedParams;
+
+  const [branches, setBranches] = useState({});
+  const [mergePairs, setMergePairs] = useState([]);
+  const [currentPairIndex, setCurrentPairIndex] = useState(0);
+
+  // Exemple: récupérer toutes les branches pour un fichier
+  async function fetchBranches(book) {
+    // rename param to 'book' for clarity
+    if (!book) return {};
+
+    const res = await fetch(`/api/github/branches`);
+    console.log("Fetching branches for book:", book);
+    console.log("Response status:", res.status);
+    const branchList = await res.json();
+
+    console.log("Branches récupérées:", branchList);
+
+    if (!Array.isArray(branchList)) {
+      console.error("branchList is not an array", branchList);
+      return {};
+    }
+
+    const branchContents = {};
+
+    for (const branchObj of branchList) {
+      const branchName = branchObj.name;
+      console.log("Fetching file from branch:", branchName);
+      try {
+        const resFile = await fetch(
+          `/api/github/get-file?book=${book}&branch=${branchName}`
+        );
+        if (!resFile.ok) {
+          console.warn(`Fichier non trouvé sur ${branchName}`);
+          continue;
+        }
+        branchContents[branchName] = await resFile.text();
+      } catch (err) {
+        console.error(`Erreur fetch fichier ${branchName}:`, err);
+      }
+    }
+
+    return branchContents;
+  }
 
   useEffect(() => {
-    // Here you could later load both versions to compare/merge
-    console.log("Merger loaded for:", { status, slug });
-  }, [status, slug]);
+    async function load() {
+      const branchContents = await fetchBranches(link);
+      // Liste des branches par ordre de priorité
+      const DEFAULT_HIERARCHY = ["master", "ver2", "ver3"];
+
+      // Trier les branches selon priorité + les autres
+      const orderedBranches = [
+        ...DEFAULT_HIERARCHY.filter((b) => branchContents[b]),
+        ...Object.keys(branchContents).filter(
+          (b) => !DEFAULT_HIERARCHY.includes(b)
+        ),
+      ];
+
+      // Construire les paires pour fusion progressive
+      const pairs = [];
+      for (let i = orderedBranches.length - 1; i > 0; i--) {
+        const high = orderedBranches[i];
+        const low = orderedBranches[i - 1];
+        pairs.push({ high, low });
+      }
+
+      setBranches(branchContents);
+      setMergePairs(pairs);
+    }
+
+    load();
+  }, [link]);
+
+  if (!mergePairs.length) return <p>Chargement des branches…</p>;
+
+  const { high, low } = mergePairs[currentPairIndex];
+
+  function handleNextMerge(mergedText) {
+    // Mettre à jour le résultat dans la branche inférieure
+    setBranches((prev) => ({ ...prev, [low]: mergedText }));
+
+    // Passer à la paire suivante
+    if (currentPairIndex + 1 < mergePairs.length) {
+      setCurrentPairIndex(currentPairIndex + 1);
+    } else {
+      console.log("✅ Toutes les fusions sont terminées", branches);
+    }
+  }
 
   return (
-    <main className="min-h-screen p-8 bg-[var(--background)] text-[var(--foreground)]">
-      <h1 className="text-3xl font-bold mb-6">🧩 Merger</h1>
-
-      <p className="opacity-80 mb-6">
-        Merge multiple versions of <strong>{slug}</strong> from <em>{status}</em>.
+    <div>
+      <h1 className="text-xl font-bold mb-4">Fusion interactive</h1>
+      <p>
+        Fusion en cours : <strong>{high}</strong> → <strong>{low}</strong>
       </p>
-
-      <div className="border p-6 rounded-xl shadow-lg bg-[var(--card-background)]">
-        <p className="text-gray-400 italic">
-          (Merger interface will go here — you can load two versions and merge
-          text, diffs, or metadata.)
-        </p>
-      </div>
-    </main>
+      <InteractiveMerge
+        original={branches[low]}
+        modified={branches[high]}
+        onMergeComplete={handleNextMerge}
+      />
+    </div>
   );
 }

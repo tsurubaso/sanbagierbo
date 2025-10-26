@@ -60,9 +60,8 @@ export default function BillyLayout({ children }) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
-        rightSidebarContent={<p>🔀 Mode Fusion</p>}
-        rightSidebarDescription={<p>Comparaison et fusion de versions</p>}
-        showRightDefault
+        rightSidebarContent={<DictionarySidebarFull/>}
+        showRightDefault={true}
       >
         {children}
       </ClientWrapper>
