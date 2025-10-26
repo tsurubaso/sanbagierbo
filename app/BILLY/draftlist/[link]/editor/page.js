@@ -56,7 +56,7 @@ export default function BookEditorPage({ params, searchParams }) {
   async function saveFile() {
 
         if (currentBranch === "master") {
-      setStatus("❌ Saving on 'master' is disabled. Please use v2 or v3.");
+      setStatus("❌ Saving on 'master' is disabled. Please use ver2 or ver3.");
       return;
     }
 
@@ -125,8 +125,8 @@ export default function BookEditorPage({ params, searchParams }) {
               {branches.map((b) => (
                 <option key={b}>{b}</option>
               ))}
-              {!branches.includes("v2") && <option value="v2">v2</option>}
-              {!branches.includes("v3") && <option value="v3">v3</option>}
+              {!branches.includes("ver2") && <option value="ver2">ver2</option>}
+              {!branches.includes("ver3") && <option value="ver3">ver3</option>}
             </select>
           </div>
 
@@ -199,7 +199,7 @@ export default function BookEditorPage({ params, searchParams }) {
 
         {currentBranch === "master" && (
           <p className="text-xs text-red-400 italic">
-            ⚠️ Saving is disabled on master. Please switch to v2 or v3.
+            ⚠️ Saving is disabled on master. Please switch to ver2 or ver3.
           </p>
         )}
       </footer>

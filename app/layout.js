@@ -42,7 +42,10 @@ export const metadata = {
   alternates: {
     canonical: "https://sanbagierbo.vercel.app",
   },
-  themeColor: "#ffffff",
+};
+
+export const viewport = {
+  themeColor: "#1e1e1e",
 };
 
 
