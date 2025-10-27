@@ -1,30 +1,37 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { useState } from "react";
 import InteractiveMerge from "@/components/InteractiveMerge";
 
-export default function MergerPage({ params }) {
-  const { link: book } = use(params); // ✅ ici la différence
-  const [branches, setBranches] = useState({});
-  const [branchList, setBranchList] = useState([]);
+export default function MergerClient({ book, branchList, branchContents }) {
   const [sourceBranch, setSourceBranch] = useState("");
   const [targetBranch, setTargetBranch] = useState("");
   const [mergedText, setMergedText] = useState("");
   const [mergeDone, setMergeDone] = useState(false);
 
-  useEffect(() => {
-    async function load() {
-      const res = await fetch(`/api/github/merge?book=${book}`);
-      const data = await res.json();
-      if (data.error) {
-        console.error("❌", data.error);
-        return;
-      }
-      setBranchList(data.branches);
-      setBranches(data.contents);
-    }
-    load();
-  }, [book]);
+  function handleMergeComplete(text) {
+    setMergedText(text);
+    setMergeDone(true);
+  }
+
+  async function handleEraseAndSave() {
+    if (!mergeDone || !targetBranch) return;
+    console.log(`💾 Saving merged content to ${targetBranch}...`);
+
+    // Example placeholder (you’ll connect your save route here)
+    // await fetch(`/api/github/save`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     book,
+    //     branch: targetBranch,
+    //     content: mergedText,
+    //   }),
+    // });
+
+    alert(`Merged content saved to ${targetBranch}`);
+    setMergeDone(false);
+  }
 
   const isMergeDisabled =
     !sourceBranch ||
@@ -32,23 +39,14 @@ export default function MergerPage({ params }) {
     sourceBranch === targetBranch ||
     sourceBranch === "master";
 
-  async function handleSave() {
-    if (!mergeDone || !targetBranch) return;
-    const res = await fetch("/api/github/merge", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ book, targetBranch, mergedText }),
-    });
-    const data = await res.json();
-    if (data.success) alert(`✅ Merged result saved to ${targetBranch}`);
-    else alert(`❌ Error: ${data.error}`);
-    setMergeDone(false);
-  }
-
   return (
     <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Fusion interactive</h1>
+      <h1 className="text-xl font-bold mb-4">Fusion interactive manuelle</h1>
+      <p className="mb-4 text-sm text-gray-500">
+        Sélectionnez deux branches à comparer et fusionner.
+      </p>
 
+      {/* Dropdowns */}
       <div className="flex gap-4 mb-6">
         <div>
           <label className="block mb-1 text-sm font-semibold">Source</label>
@@ -83,6 +81,7 @@ export default function MergerPage({ params }) {
         </div>
       </div>
 
+      {/* Merge button */}
       <button
         disabled={isMergeDisabled}
         onClick={() => setMergeDone(false)}
@@ -97,24 +96,27 @@ export default function MergerPage({ params }) {
           : `Fusionner ${sourceBranch} → ${targetBranch}`}
       </button>
 
+      {/* Interactive merge view */}
       {sourceBranch && targetBranch && !isMergeDisabled && (
         <div className="mt-8">
+          <h2 className="text-lg font-semibold mb-2">
+            Comparaison : {sourceBranch} → {targetBranch}
+          </h2>
           <InteractiveMerge
-            original={branches[targetBranch]}
-            modified={branches[sourceBranch]}
-            onMergeComplete={(text) => {
-              setMergedText(text);
-              setMergeDone(true);
-            }}
+            original={branchContents[targetBranch]}
+            modified={branchContents[sourceBranch]}
+            onMergeComplete={handleMergeComplete}
           />
 
           {mergeDone && (
-            <button
-              onClick={handleSave}
-              className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              💾 Save merged result to {targetBranch}
-            </button>
+            <div className="mt-4">
+              <button
+                onClick={handleEraseAndSave}
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              >
+                💾 Erase target and Save merged result
+              </button>
+            </div>
           )}
         </div>
       )}
