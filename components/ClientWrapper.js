@@ -22,7 +22,7 @@ export default function ClientWrapper({
 
   const navItems = [
     { href: "/", label: "🏠 Home" },
-    { href: "/Rules", label: "📜 Les Règles" },
+    { href: "/BILLY/Rules", label: "📜 Les Règles" },
     { href: "/BILLY/storylist", label: "📚 Histoires" },
     { href: "/BILLY/draftlist", label: "📝 Brouillons" },
     { href: "/BILLY/fragmentlist", label: "✂️ Fragments" },

@@ -53,36 +53,55 @@ export default function BookEditorPage({ params, searchParams }) {
   }, [book, currentBranch]);
 
   // Save file
-  async function saveFile() {
+async function saveFile() {
+  let targetBranch = currentBranch;
 
-        if (currentBranch === "master") {
-      setStatus("❌ Saving on 'master' is disabled. Please use ver2 or ver3.");
+  // If current is master and no ver2/ver3 exists, allow creating ver2
+  if (currentBranch === "master") {
+    if (!branches.includes("ver2")) {
+      targetBranch = "ver2";
+      setCurrentBranch("ver2");
+      setStatus("⚠️ Master cannot be overwritten, saving on new branch 'ver2'...");
+    } else if (!branches.includes("ver3")) {
+      targetBranch = "ver3";
+      setCurrentBranch("ver3");
+      setStatus("⚠️ Master cannot be overwritten, saving on new branch 'ver3'...");
+    } else {
+      setStatus("❌ Cannot save on master; branches already exist.");
       return;
     }
-
-
-   setStatus(`Saving on ${currentBranch}...`);
-    try {
-      // ensure the branch exists before saving
-      await fetch("/api/github/ensure-branch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ branch: currentBranch }),
-      });
-
-      const res = await fetch("/api/github/save-file", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ book, branch: currentBranch, content }),
-      });
-      if (!res.ok) throw new Error("Failed to save file");
-      setStatus(`✅ File saved successfully on ${currentBranch}!`);
-    } catch (err) {
-      setStatus("❌ " + err.message);
-    } finally {
-      setTimeout(() => setStatus(""), 5000);
-    }
+  } else {
+    setStatus(`Saving on ${targetBranch}...`);
   }
+
+  try {
+    // ensure the branch exists
+    await fetch("/api/github/ensure-branch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ branch: targetBranch }),
+    });
+
+    const res = await fetch("/api/github/save-file", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ book, branch: targetBranch, content }),
+    });
+
+    if (!res.ok) throw new Error("Failed to save file");
+
+    setStatus(`✅ File saved successfully on ${targetBranch}!`);
+
+    // Add the new branch to the local list
+    if (!branches.includes(targetBranch)) {
+      setBranches([...branches, targetBranch]);
+    }
+  } catch (err) {
+    setStatus("❌ " + err.message);
+  } finally {
+    setTimeout(() => setStatus(""), 5000);
+  }
+}
 
   // LanguageTool correction
   async function handleLTCorrection() {

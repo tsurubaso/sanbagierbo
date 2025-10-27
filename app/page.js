@@ -25,7 +25,7 @@ const {
 export default function Welcome() {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/Rules"); // 👈 chemin de destination
+    router.push("BILLY/Rules"); // 👈 chemin de destination 
   };
 
   return (

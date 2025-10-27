@@ -4,13 +4,14 @@ import { use, useState, useEffect } from "react";
 import InteractiveMerge from "@/components/InteractiveMerge";
 
 export default function MergerPage({ params }) {
-  const { link: book } = use(params); // ✅ ici la différence
+  const { link: book } = use(params);
+
   const [branches, setBranches] = useState({});
   const [branchList, setBranchList] = useState([]);
   const [sourceBranch, setSourceBranch] = useState("");
   const [targetBranch, setTargetBranch] = useState("");
   const [mergedText, setMergedText] = useState("");
-  const [mergeDone, setMergeDone] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -32,23 +33,56 @@ export default function MergerPage({ params }) {
     sourceBranch === targetBranch ||
     sourceBranch === "master";
 
+  function handleMergedChange(text) {
+    setMergedText(text);
+    setHasChanges(true);
+  }
+
   async function handleSave() {
-    if (!mergeDone || !targetBranch) return;
-    const res = await fetch("/api/github/merge", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ book, targetBranch, mergedText }),
-    });
-    const data = await res.json();
-    if (data.success) alert(`✅ Merged result saved to ${targetBranch}`);
-    else alert(`❌ Error: ${data.error}`);
-    setMergeDone(false);
+    if (!hasChanges || !targetBranch) return;
+
+    try {
+      const res = await fetch("/api/github/merge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ book, targetBranch, mergedText }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`✅ Merged result saved to ${targetBranch}`);
+
+        // Supprimer la branche source si ce n'est pas master
+        if (sourceBranch !== "master") {
+          await fetch("/api/github/delete-branch", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ branch: sourceBranch }),
+          });
+          alert(`🗑 Source branch ${sourceBranch} deleted`);
+        }
+
+        // Rafraîchir la liste des branches
+        setHasChanges(false);
+        const refresh = await fetch(`/api/github/merge?book=${book}`);
+        const data2 = await refresh.json();
+        setBranchList(data2.branches);
+        setBranches(data2.contents);
+        setSourceBranch("");
+        setTargetBranch("");
+        setMergedText("");
+      } else {
+        alert(`❌ Error: ${data.error}`);
+      }
+    } catch (err) {
+      alert("❌ " + err.message);
+    }
   }
 
   return (
     <div className="p-6">
       <h1 className="text-xl font-bold mb-4">Fusion interactive</h1>
 
+      {/* Sélecteurs */}
       <div className="flex gap-4 mb-6">
         <div>
           <label className="block mb-1 text-sm font-semibold">Source</label>
@@ -83,9 +117,10 @@ export default function MergerPage({ params }) {
         </div>
       </div>
 
+      {/* Bouton fusionner */}
       <button
         disabled={isMergeDisabled}
-        onClick={() => setMergeDone(false)}
+        onClick={() => setHasChanges(false)}
         className={`px-4 py-2 rounded font-semibold ${
           isMergeDisabled
             ? "bg-gray-300 cursor-not-allowed"
@@ -97,18 +132,17 @@ export default function MergerPage({ params }) {
           : `Fusionner ${sourceBranch} → ${targetBranch}`}
       </button>
 
+      {/* InteractiveMerge */}
       {sourceBranch && targetBranch && !isMergeDisabled && (
         <div className="mt-8">
           <InteractiveMerge
             original={branches[targetBranch]}
             modified={branches[sourceBranch]}
-            onMergeComplete={(text) => {
-              setMergedText(text);
-              setMergeDone(true);
-            }}
+            onMerge={handleMergedChange}
           />
 
-          {mergeDone && (
+          {/* Bouton Save */}
+          {hasChanges && (
             <button
               onClick={handleSave}
               className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"

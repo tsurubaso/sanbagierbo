@@ -15,6 +15,7 @@ export default function BillyLayout({ children }) {
   const isIllustration = pathname.startsWith("/BILLY/illustrationlist");
   const isOther = pathname.startsWith("/BILLY/otherlist");
   const isStory = pathname.startsWith("/BILLY/storylist");
+  const isRules = pathname.startsWith("/BILLY/Rules");
 
   // Modes
   const isReader = pathname.includes("/reader");
@@ -69,6 +70,18 @@ export default function BillyLayout({ children }) {
   }
 
   // === ENSUITE LES CATÉGORIES ===
+  if (isRules) {
+    return (
+ <ClientWrapper
+      navItemsTop
+      rightSidebarContent={<GithubSidebar />}
+      //rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
+    >
+      {children}
+    </ClientWrapper>
+    );
+  }
+
   if (isDraft) {
     return (
       <ClientWrapper
@@ -87,7 +100,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        rightSidebarDescription={<p>📜 Fragments en cours</p>}
+        //rightSidebarDescription={<p>📜 Fragments en cours</p>}
         showRightDefault={false}
       >
         {children}
@@ -100,7 +113,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        rightSidebarDescription={<p>🎨 Illustrations liées</p>}
+       // rightSidebarDescription={<p>🎨 Illustrations liées</p>}
         showRightDefault={false}
       >
         {children}
@@ -113,7 +126,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        rightSidebarDescription={<p>📦 Autres contenus</p>}
+       // rightSidebarDescription={<p>📦 Autres contenus</p>}
         showRightDefault={false}
       >
         {children}
@@ -126,7 +139,7 @@ export default function BillyLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        rightSidebarDescription={<p>📖 Histoires complètes</p>}
+       // rightSidebarDescription={<p>📖 Histoires complètes</p>}
         showRightDefault={false}
       >
         {children}

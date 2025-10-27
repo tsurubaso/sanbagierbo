@@ -1,9 +1,12 @@
 // app/BILLY/draftlist/[link]/page.js
 import MarkdownLoader from "@/components/MarkdownLoader";
+import { use } from "react";
 
-export default function BookPage({ params, searchParams }) {
-    const link =  params.link; // ✅ just use it directly
-  const branch = searchParams?.branch || "master"; // ✅ read branch from URL (optional)
+export default function BookPage({params, searchParams }) {
+   const { link } = use(params); // ✅
+
+  const search = use(searchParams); // unwrap
+  const branch =search?.branch || "master"; // ✅
 
   return (
     <div className="flex min-h-screen bg-[#1e1e1e] text-gray-100">
