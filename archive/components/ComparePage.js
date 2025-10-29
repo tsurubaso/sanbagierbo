@@ -21,8 +21,8 @@ export default function ComparePage({ book, versions }) {
       const [branchA, branchB] = versions;
 
       // API qui fetch le contenu du fichier pour une branche donnée
-      const resA = await fetch(`/api/github/fetch-file?book=${book}&branch=${branchA}`);
-      const resB = await fetch(`/api/github/fetch-file?book=${book}&branch=${branchB}`);
+      const resA = await fetch(`/api/github/get-file?book=${book}&branch=${branchA}`);
+      const resB = await fetch(`/api/github/get-file?book=${book}&branch=${branchB}`);
 
       const textA = await resA.text();
       const textB = await resB.text();

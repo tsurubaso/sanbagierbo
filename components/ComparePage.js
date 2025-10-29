@@ -11,7 +11,7 @@ export default function ComparePage({ book }) {
   useEffect(() => {
     async function loadBranchesAndFiles() {
       // 1️⃣ Récupère toutes les branches
-      const res = await fetch("/api/github/list-branches");
+      const res = await fetch("/api/github/branches");
       const allBranches = await res.json();
       setBranches(allBranches);
 
@@ -19,7 +19,7 @@ export default function ComparePage({ book }) {
       const branchesToFetch = ["master", "ver2", "ver3"].filter(b => allBranches.includes(b));
       const content = {};
       for (const b of branchesToFetch) {
-        const r = await fetch(`/api/github/fetch-file?book=${book}&branch=${b}`);
+        const r = await fetch(`/api/github/get-file?book=${book}&branch=${b}`);
         content[b] = await r.text();
       }
       setFilesContent(content);

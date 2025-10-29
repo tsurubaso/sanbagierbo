@@ -16,6 +16,7 @@
     "gray-matter": "^4.0.3",
     "next": "15.5.4",
     "next-auth": "^4.24.11",
+    "octokit": "^5.0.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",

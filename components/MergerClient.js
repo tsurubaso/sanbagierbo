@@ -105,7 +105,7 @@ export default function MergerClient({ book, branchList, branchContents }) {
           <InteractiveMerge
             original={branchContents[targetBranch]}
             modified={branchContents[sourceBranch]}
-            onMergeComplete={handleMergeComplete}
+            onMerge={handleMergeComplete}
           />
 
           {mergeDone && (

@@ -85,7 +85,7 @@ export default function BillyLayout({ children }) {
   if (isDraft) {
     return (
       <ClientWrapper
-        navItemsTop={navItemsTop}
+        navItemsTop
         rightSidebarContent={<GithubSidebar />}
         //rightSidebarDescription={<p>🧾 Liste de brouillons</p>}
         showRightDefault={false}
@@ -98,7 +98,7 @@ export default function BillyLayout({ children }) {
   if (isFragment) {
     return (
       <ClientWrapper
-        navItemsTop={navItemsTop}
+        navItemsTop
         rightSidebarContent={<GithubSidebar />}
         //rightSidebarDescription={<p>📜 Fragments en cours</p>}
         showRightDefault={false}
@@ -111,7 +111,7 @@ export default function BillyLayout({ children }) {
   if (isIllustration) {
     return (
       <ClientWrapper
-        navItemsTop={navItemsTop}
+        navItemsTop
         rightSidebarContent={<GithubSidebar />}
        // rightSidebarDescription={<p>🎨 Illustrations liées</p>}
         showRightDefault={false}
@@ -124,7 +124,7 @@ export default function BillyLayout({ children }) {
   if (isOther) {
     return (
       <ClientWrapper
-        navItemsTop={navItemsTop}
+        navItemsTop
         rightSidebarContent={<GithubSidebar />}
        // rightSidebarDescription={<p>📦 Autres contenus</p>}
         showRightDefault={false}
@@ -137,7 +137,7 @@ export default function BillyLayout({ children }) {
   if (isStory) {
     return (
       <ClientWrapper
-        navItemsTop={navItemsTop}
+        navItemsTop
         rightSidebarContent={<GithubSidebar />}
        // rightSidebarDescription={<p>📖 Histoires complètes</p>}
         showRightDefault={false}

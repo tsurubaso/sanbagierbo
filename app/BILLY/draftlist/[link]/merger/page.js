@@ -42,7 +42,7 @@ export default function MergerPage({ params }) {
     if (!hasChanges || !targetBranch) return;
 
     try {
-      const res = await fetch("/api/github/merge", {
+      const res = await fetch("/api/github/save-merged", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ book, targetBranch, mergedText }),
