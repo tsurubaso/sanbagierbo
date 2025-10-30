@@ -6,16 +6,19 @@ import DictionarySidebarFull from "@/components/DicoCompletPourSidebare";
 import GithubSidebar from "@/components/GitHubSideBar";
 import { usePathname } from "next/navigation";
 
-export default function BillyLayout({ children }) {
+export default function PersonLayout({ children }) {
   const pathname = usePathname();
 
+    // Exemple : "/BILLY/draftlist/reader" → ["", "BILLY", "draftlist", "reader"]
+  const [, person] = pathname.split("/");
+
   // Catégories principales
-  const isDraft = pathname.startsWith("/BILLY/draftlist");
-  const isFragment = pathname.startsWith("/BILLY/fragmentlist");
-  const isIllustration = pathname.startsWith("/BILLY/illustrationlist");
-  const isOther = pathname.startsWith("/BILLY/otherlist");
-  const isStory = pathname.startsWith("/BILLY/storylist");
-  const isRules = pathname.startsWith("/BILLY/Rules");
+  const isDraft = pathname.includes("draftlist");
+  const isFragment = pathname.includes("fragmentlist");
+  const isIllustration = pathname.includes("illustrationlist");
+  const isOther = pathname.includes("otherlist");
+  const isStory = pathname.includes("storylist");
+  const isRules = pathname.includes("Rules");
 
   // Modes
   const isReader = pathname.includes("/reader");
@@ -45,23 +48,11 @@ export default function BillyLayout({ children }) {
     );
   }
 
-  if (isEditor) {
+  if (isEditor || isMerger) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
-        rightSidebarContent={<DictionarySidebarFull/>}
-        showRightDefault={true}
-      >
-        {children}
-      </ClientWrapper>
-    );
-  }
-
-  if (isMerger) {
-    return (
-      <ClientWrapper
-        navItemsTop={navItemsTop}
-        rightSidebarContent={<DictionarySidebarFull/>}
+        rightSidebarContent={<DictionarySidebarFull />}
         showRightDefault={true}
       >
         {children}
@@ -72,74 +63,20 @@ export default function BillyLayout({ children }) {
   // === ENSUITE LES CATÉGORIES ===
   if (isRules) {
     return (
- <ClientWrapper
-      navItemsTop
-      rightSidebarContent={<GithubSidebar />}
-      //rightSidebarDescription={<p>🔍 Données de connection GitHub </p>}
-    >
-      {children}
-    </ClientWrapper>
-    );
-  }
-
-  if (isDraft) {
-    return (
       <ClientWrapper
-        navItemsTop
+       // navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        //rightSidebarDescription={<p>🧾 Liste de brouillons</p>}
-        showRightDefault={false}
       >
         {children}
       </ClientWrapper>
     );
   }
 
-  if (isFragment) {
+  if (isDraft || isFragment || isIllustration || isOther || isStory) {
     return (
       <ClientWrapper
-        navItemsTop
+       // navItemsTop={navItemsTop}
         rightSidebarContent={<GithubSidebar />}
-        //rightSidebarDescription={<p>📜 Fragments en cours</p>}
-        showRightDefault={false}
-      >
-        {children}
-      </ClientWrapper>
-    );
-  }
-
-  if (isIllustration) {
-    return (
-      <ClientWrapper
-        navItemsTop
-        rightSidebarContent={<GithubSidebar />}
-       // rightSidebarDescription={<p>🎨 Illustrations liées</p>}
-        showRightDefault={false}
-      >
-        {children}
-      </ClientWrapper>
-    );
-  }
-
-  if (isOther) {
-    return (
-      <ClientWrapper
-        navItemsTop
-        rightSidebarContent={<GithubSidebar />}
-       // rightSidebarDescription={<p>📦 Autres contenus</p>}
-        showRightDefault={false}
-      >
-        {children}
-      </ClientWrapper>
-    );
-  }
-
-  if (isStory) {
-    return (
-      <ClientWrapper
-        navItemsTop
-        rightSidebarContent={<GithubSidebar />}
-       // rightSidebarDescription={<p>📖 Histoires complètes</p>}
         showRightDefault={false}
       >
         {children}

@@ -4,7 +4,6 @@ import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 
 export default function StoriesGrid({
-  jsonUrl = "/stories.json",
   status = "fragment",
   basePath = "BILLY",
   textDePresentation = "Fragments of stories or between story and draft",

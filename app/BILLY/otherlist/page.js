@@ -1,5 +1,11 @@
 import StoriesGrid from "@/components/StoriesGrid";
 
 export default function OtherListPage() {
-  return <StoriesGrid jsonUrl="/stories.json" status="other" textDePresentation="Beaucoup de choses faites avant" />;
+  return (
+    <StoriesGrid
+    basePath = "BILLY"
+      status="other"
+      textDePresentation="Beaucoup de choses faites avant"
+    />
+  );
 }
