@@ -3,12 +3,6 @@ import MotionEffects from "@/components/MotionEffects";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
-
-
-
-
-
 const {
   //PulseText,
   //FadeIn,
@@ -24,14 +18,27 @@ const {
 
 export default function Welcome() {
   const router = useRouter();
-  const handleClick = () => {
-    router.push("BILLY/Rules"); // 👈 chemin de destination 
+
+  const routes = [
+    { label: "Full app", path: "/BILLY/Rules" },
+    { label: "Full app secret mode", path: "/TARVA/Rules" },
+    { label: "Reader", path: "/BESTA/Rules" },
+    { label: "Reader+writer", path: "/KALLAX/Rules" },
+  ];
+
+  const handleClick = (path) => {
+    router.push(path);
   };
 
   return (
-<main className="flex min-h-screen items-center justify-center py-2 px-4"
-      style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}>
-  <div className="w-full max-w-4xl p-8 rounded-lg shadow-md border space-y-5">
+    <main
+      className="flex min-h-screen items-center justify-center py-2 px-4"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--foreground)",
+      }}
+    >
+      <div className="w-full max-w-4xl p-8 rounded-lg shadow-md border space-y-5">
         {/* Objectif */}
 
         <HeroSection
@@ -195,17 +202,31 @@ Pour ce que l'on aime, pour ceux que l'on aime."
           direction="right"
           hover
         />
-        <div className="flex justify-center mt-4">
-          <Image
-            src="/image6.jpg"
-            alt="Cliquez pour continuer"
-            width={300}
-            height={200}
-            onClick={handleClick}
-            className="rounded cursor-pointer hover:scale-105 transition-transform"
-            style={{ width: "100%", height: "auto" }} // maintain aspect ratio
-          />
-        </div>
+
+    <div className="relative flex justify-center mt-6">
+      {/* --- IMAGE DE FOND --- */}
+      <Image
+        src="/image6.jpg"
+        alt="Fond"
+        width={1000}
+        height={600}
+        className="rounded-lg object-cover"
+        style={{ width: "100%", height: "auto", maxHeight: "600px" }}
+      />
+
+      {/* --- BOUTONS PAR-DESSUS --- */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center space-y-3">
+        {routes.map((route) => (
+          <button
+            key={route.path}
+            onClick={() => handleClick(route.path)}
+            className="px-5 py-6 bg-pink-600/80 text-white font-semibold rounded-lg hover:bg-blue-600/80 transition"
+          >
+            {route.label}
+          </button>
+        ))}
+      </div>
+    </div>
       </div>
     </main>
   );

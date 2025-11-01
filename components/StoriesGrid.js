@@ -24,7 +24,6 @@ export default function StoriesGrid({
     };
     fetchStories();
   }, [status]);
-
   const filteredStories = stories.filter((story) =>
     story.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
