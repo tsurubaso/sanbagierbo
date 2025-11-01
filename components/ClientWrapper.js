@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SessionProvider } from "next-auth/react";
+import { usePathname } from "next/navigation"
 import ThemeToggle from "./ThemeToggle";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
@@ -20,15 +21,22 @@ export default function ClientWrapper({
   const [showTop, setShowTop] = useState(true);
   const [showFooter, setShowFooter] = useState(true);
 
+ const pathname = usePathname()
+
+  // Exemple: "/BILLY/draftlist/reader" → ["", "BILLY", "draftlist", "reader"]
+  const [, person] = pathname.split("/")
+
+  // Fallback au cas où on est sur "/" ou route sans nom
+  const currentPerson = person
+
   const navItems = [
-    { href: "/", label: "🏠 Home" },
-    { href: "/BILLY/Rules", label: "📜 Les Règles" },
-    { href: "/BILLY/storylist", label: "📚 Histoires" },
-    { href: "/BILLY/draftlist", label: "📝 Brouillons" },
-    { href: "/BILLY/fragmentlist", label: "✂️ Fragments" },
-    { href: "/BILLY/otherlist", label: "🗂️ Autres" },
-    { href: "/BILLY/illustrationlist", label: "🎨 Illustrations" },
-  ];
+    { href: `/${currentPerson}/Rules`, label: "📜 Les Règles" },
+    { href: `/${currentPerson}/storylist`, label: "📚 Histoires" },
+    { href: `/${currentPerson}/draftlist`, label: "📝 Brouillons" },
+    { href: `/${currentPerson}/fragmentlist`, label: "✂️ Fragments" },
+    { href: `/${currentPerson}/otherlist`, label: "🗂️ Autres" },
+    { href: `/${currentPerson}/illustrationlist`, label: "🎨 Illustrations" },
+  ]
 
   return (
     <SessionProvider>
