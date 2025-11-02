@@ -1,7 +1,7 @@
 "use client";
 
 import ClientWrapper from "@/components/ClientWrapper";
-import DictionarySidebarSimple from "@/components/DicoSimplePourSidebare";
+//import DictionarySidebarSimple from "@/components/DicoSimplePourSidebare";
 import DictionarySidebarFull from "@/components/DicoCompletPourSidebare";
 import GithubSidebar from "@/components/GitHubSideBar";
 import { usePathname } from "next/navigation";
@@ -40,14 +40,14 @@ export default function PersonLayout({ children }) {
       <ClientWrapper
         navItemsTop={navItemsTop}
         //rightSidebarDescription={<p>🧾 Mode Lecture</p>}
-        rightSidebarContent={<DictionarySidebarSimple />}
+        rightSidebarContent={<DictionarySidebarFull />}
         showRightDefault={true}
       >
         {children}
       </ClientWrapper>
     );
   }
-
+/*
   if (isEditor || isMerger) {
     return (
       <ClientWrapper
@@ -59,6 +59,7 @@ export default function PersonLayout({ children }) {
       </ClientWrapper>
     );
   }
+*/
 
   // === ENSUITE LES CATÉGORIES ===
   if (isRules) {

@@ -3,7 +3,11 @@ import { useState, useEffect, useRef, use } from "react";
 import Editor from "@monaco-editor/react";
 import LanguageToolResult from "@/components/LanguageToolResult";
 
+//EDTOR PAGE
+
 export default function BookEditorPage({ params, searchParams }) {
+
+  const secret = use(params).editor;
   const book = use(params).link;
   const branch = use(searchParams)?.branch || "master";
 
@@ -126,6 +130,12 @@ async function saveFile() {
   }
 
   if (loading) return <p>Loading...</p>;
+
+  const SECRET_KEY = process.env.NEXT_PUBLIC_EDITOR_SECRET_KEY;
+      // Vérifie le secret
+  if (secret !== SECRET_KEY) {
+    return <p style={{ padding: "2rem", color: "red" }}>Unauthorized </p>;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-[#1e1e1e] text-gray-100">

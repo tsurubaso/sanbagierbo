@@ -3,8 +3,12 @@
 import { use, useState, useEffect } from "react";
 import InteractiveMerge from "@/components/InteractiveMerge";
 
+//MERGER PAGE
+
 export default function MergerPage({ params }) {
-  const { link: book } = use(params);
+  const { link: book, merger: secret} = use(params);
+
+
 
   const [branches, setBranches] = useState({});
   const [branchList, setBranchList] = useState([]);
@@ -36,6 +40,13 @@ export default function MergerPage({ params }) {
   function handleMergedChange(text) {
     setMergedText(text);
     setHasChanges(true);
+  }
+
+  const SECRET_KEY2 = process.env.NEXT_PUBLIC_MERGER_SECRET_KEY;
+
+      // Vérifie le secret
+  if (secret !== SECRET_KEY2) {
+    return <p style={{ padding: "2rem", color: "red" }}>Unauthorized </p>;
   }
 
   async function handleSave() {
