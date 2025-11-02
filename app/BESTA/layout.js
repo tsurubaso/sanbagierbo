@@ -2,12 +2,15 @@
 
 import ClientWrapper from "@/components/ClientWrapper";
 import DictionarySidebarSimple from "@/components/DicoSimplePourSidebare";
-import DictionarySidebarFull from "@/components/DicoCompletPourSidebare";
+//port DictionarySidebarFull from "@/components/DicoCompletPourSidebare";
 import GithubSidebar from "@/components/GitHubSideBar";
 import { usePathname } from "next/navigation";
 
 export default function PersonLayout({ children }) {
   const pathname = usePathname();
+  
+    // Exemple : "/BILLY/draftlist/reader" → ["", "BILLY", "draftlist", "reader"]
+  const [, person] = pathname.split("/");
 
   // Catégories principales
   const isDraft = pathname.includes("draftlist");

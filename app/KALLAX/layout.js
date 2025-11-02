@@ -48,7 +48,7 @@ export default function PersonLayout({ children }) {
     );
   }
 
-  if (isEditor || isMerger) {
+  if (isEditor) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
