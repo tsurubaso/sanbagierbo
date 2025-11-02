@@ -4,8 +4,8 @@ import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 
 export default function StoriesGrid({
-  status = "fragment",
-  basePath = "BILLY",
+  status,
+  basePath,
   textDePresentation = "Fragments of stories or between story and draft",
 }) {
   const [stories, setStories] = useState([]);

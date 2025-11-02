@@ -9,9 +9,6 @@ import { usePathname } from "next/navigation";
 export default function PersonLayout({ children }) {
   const pathname = usePathname();
 
-    // Exemple : "/BILLY/draftlist/reader" → ["", "BILLY", "draftlist", "reader"]
-  const [, person] = pathname.split("/");
-
   // Catégories principales
   const isDraft = pathname.includes("draftlist");
   const isFragment = pathname.includes("fragmentlist");
