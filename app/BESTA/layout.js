@@ -22,16 +22,16 @@ export default function PersonLayout({ children }) {
 
   // Modes
   const isReader = pathname.includes("/reader");
-  const isEditor = pathname.includes("/editor");
-  const isMerger = pathname.includes("/merger");
+  //const isEditor = pathname.includes("/editor");
+  //const isMerger = pathname.includes("/merger");
 
   // Base path
   const basePath = pathname.replace(/\/(reader|editor|merger)$/, "");
 
   const navItemsTop = [
     { href: `${basePath}/reader`, label: "📖 Reader" },
-    { href: `${basePath}/editor`, label: "✏️ Editor" },
-    { href: `${basePath}/merger`, label: "🧩 Merger" },
+   // { href: `${basePath}/editor`, label: "✏️ Editor" },
+   // { href: `${basePath}/merger`, label: "🧩 Merger" },
   ];
 
   // === PRIORITÉ AUX MODES ===
@@ -48,7 +48,7 @@ export default function PersonLayout({ children }) {
     );
   }
 
-  if (isEditor || isMerger) {
+  /*if (isEditor || isMerger) {
     return (
       <ClientWrapper
         navItemsTop={navItemsTop}
@@ -59,6 +59,7 @@ export default function PersonLayout({ children }) {
       </ClientWrapper>
     );
   }
+  */
 
   // === ENSUITE LES CATÉGORIES ===
   if (isRules) {

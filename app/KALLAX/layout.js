@@ -23,7 +23,7 @@ export default function PersonLayout({ children }) {
   // Modes
   const isReader = pathname.includes("/reader");
   const isEditor = pathname.includes("/editor");
-  const isMerger = pathname.includes("/merger");
+ // const isMerger = pathname.includes("/merger");
 
   // Base path
   const basePath = pathname.replace(/\/(reader|editor|merger)$/, "");
@@ -31,7 +31,7 @@ export default function PersonLayout({ children }) {
   const navItemsTop = [
     { href: `${basePath}/reader`, label: "📖 Reader" },
     { href: `${basePath}/editor`, label: "✏️ Editor" },
-    { href: `${basePath}/merger`, label: "🧩 Merger" },
+   // { href: `${basePath}/merger`, label: "🧩 Merger" },
   ];
 
   // === PRIORITÉ AUX MODES ===

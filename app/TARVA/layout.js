@@ -30,8 +30,8 @@ export default function PersonLayout({ children }) {
 
   const navItemsTop = [
     { href: `${basePath}/reader`, label: "📖 Reader" },
-    { href: `${basePath}/editor`, label: "✏️ Editor" },
-    { href: `${basePath}/merger`, label: "🧩 Merger" },
+   // { href: `${basePath}/editor`, label: "✏️ Editor" },
+   // { href: `${basePath}/merger`, label: "🧩 Merger" },
   ];
 
   // === PRIORITÉ AUX MODES ===
