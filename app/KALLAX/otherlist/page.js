@@ -1,3 +1,4 @@
+"use client";
 import StoriesGrid from "@/components/StoriesGrid";
 import { usePathname } from "next/navigation";
 

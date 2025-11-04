@@ -1,5 +1,7 @@
+"use client";
 import StoriesGrid from "@/components/StoriesGrid";
 import { usePathname } from "next/navigation";
+
 export default function FragmentListPage() {
     const pathname = usePathname();
     // Exemple : "/BILLY/draftlist/reader" → ["", "BILLY", "draftlist", "reader"]

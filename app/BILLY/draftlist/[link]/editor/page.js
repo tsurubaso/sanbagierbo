@@ -67,7 +67,7 @@ async function saveFile() {
       setCurrentBranch("ver3");
       setStatus("⚠️ Master cannot be overwritten, saving on new branch 'ver3'...");
     } else {
-      setStatus("❌ Cannot save on master; branches already exist.");
+      setStatus("❌ Cannot save on master; branches ver2 and ver3 already exist.");
       return;
     }
   } else {
@@ -151,7 +151,7 @@ async function saveFile() {
 
           <button
             onClick={saveFile}
-            disabled={currentBranch === "master"}
+            //disabled={currentBranch === "master"}
             className={`px-3 py-1 rounded ${
               currentBranch === "master"
                 ? "bg-gray-700 text-gray-400 cursor-not-allowed"
@@ -218,7 +218,7 @@ async function saveFile() {
 
         {currentBranch === "master" && (
           <p className="text-xs text-red-400 italic">
-            ⚠️ Saving is disabled on master. Please switch to ver2 or ver3.
+            ⚠️ Saving is disabled on master. Your content will be saved on ver2 or ver3.
           </p>
         )}
       </footer>
