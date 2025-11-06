@@ -1,10 +1,11 @@
-import { createFile } from "@/lib/github";
+import { saveFile } from "@/lib/github";
 
 export async function POST(req) {
   try {
-    const result = await createFile();
+    const { fileName, content, branch } = await req.json();
+    const result = await saveFile(fileName, content, branch);
     return Response.json(result);
-  } catch (e) {
-    return Response.json({ error: e.message }, { status: 500 });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }
