@@ -109,7 +109,7 @@ const ScrollShiftSection = ({text="Colorful Scroll ✨"}) => {
   return (
     <section
       ref={ref}
-      className="min-h-[300px] flex items-center justify-center bg-gray-500"
+      className="relative min-h-[300px] flex items-center justify-center bg-gray-500 overflow-hidden"
     >
       <motion.div
         viewport={{ amount: 0.3, once: false }}
@@ -143,7 +143,7 @@ const ScrollColorSection = ({text="Colorful Scroll ✨"}) => {
     <motion.section
       ref={colorRef}
       style={{ backgroundColor: bgColor }}
-      className="flex min-h-[500px] items-center justify-center"
+      className="relative flex min-h-[500px] items-center justify-center overflow-hidden"
     >
       <motion.h1 style={{ color: textColor }} className="text-5xl font-bold">
         {displayText}
@@ -186,7 +186,7 @@ const HeroSection = ({
       transition={{ duration, ease: "easeOut" }}
       whileHover={hover ? { scale: 1.05 } : {}}
     >
-      <Image src={image} alt={text} fill className="object-cover" priority />
+      <Image src={image} alt={text} fill sizes="100vw" className="object-cover" priority />
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
         whileHover={hover ? { y: -10 } : {}}
